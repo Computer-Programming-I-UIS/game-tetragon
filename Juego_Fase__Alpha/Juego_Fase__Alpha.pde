@@ -1,4 +1,5 @@
 Jugador tetra;
+Cubichoque cubo;
 Plataforma prueba;
 Plataforma esc1;
 Plataforma lim_der;
@@ -6,11 +7,12 @@ Plataforma lim_izq;
 Plataforma lim_sup;
 Plataforma lim_inf;
 float grilla[][] = new float[750+51][800+51];
-float x = 0,y = 0, a = 10, l = 10,t = 0;
+float a = 10, l = 10;
 
 void setup(){
   size(750, 800);
   frameRate(60);
+  cubo = new Cubichoque();
   tetra = new Jugador(600, 600, grilla);
   lim_der = new Plataforma( width-10, 0, 10, height, 1, grilla);
   lim_izq = new Plataforma( 0, 0, 10, height, 1, grilla);
@@ -27,10 +29,8 @@ void draw(){
   lim_inf.sprite();
   esc1.sprite();
   tetra.sprite();
-  if(mouseX > 30 && mouseX < width-30 && mouseY > 30 && mouseY <height+10){
-    t = Quadrangle(t, tetra.x, tetra.y-5);
-  }
   tetra.posicion();
+  cubo.dibujar();
 }
 
 void keyPressed(){
@@ -39,4 +39,8 @@ void keyPressed(){
 
 void keyReleased(){
   tetra.estatico();
+}
+
+void mousePressed(){
+  cubo.salt = !cubo.salt;
 }

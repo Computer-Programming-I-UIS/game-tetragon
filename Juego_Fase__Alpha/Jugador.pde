@@ -1,59 +1,59 @@
 class Jugador{
-  float x;
-  float y;
+  PVector jpos,jvel;
   float a = 30;
   float l = 30;
-  float vx = 0;
-  float vy = 0;
   float grilla[][];
   float salto = 1;
   char input[] = new char[5];
   
+  
   Jugador(float posX, float posY, float tempgrilla[][]){ //Declarar variables
-    x = posX;
-    y = posY;
+    jpos = new PVector(posX,posY);
+    jvel = new PVector(0,0);
     grilla = tempgrilla;
   }
   
   void posicion() {
     //MOVIMIENTO PROVOCADO AL NO PRESIONAR TECLAS
-    if(vx > 0.25 && input[1] == 0){ //Aplicar una fricción para que se detenga 
-      vx -= 0.25;
-    }else if(vx < -0.25 && input[2] == 0){//Lo mismo de antes pero si se mueve en la otra dirección
-      vx += 0.25; 
+    if(jvel.x > 0.25 && input[1] == 0){ //Aplicar una fricción para que se detenga 
+      jvel.x -= 0.25;
+    }else if(jvel.x < -0.25 && input[2] == 0){//Lo mismo de antes pero si se mueve en la otra dirección
+      jvel.x += 0.25; 
     }else if(input[1] == 0 && input[2] == 0){//Cuando la velocidad es pequeña simplemente se detiene
-      vx = 0;
-    }if(!vehit(x, y+l, a, 0, 1, grilla)){//Gravedad
-      vy += 0.3;
+      jvel.x = 0;
+    }if(!vehit(jpos.x, jpos.y+l, a, 0, 1, grilla)){//Gravedad
+      jvel.y += 0.3;
     }
-    if(vehit(x+vx, y+5*l/6, a, l/6, 1, grilla) && !vehit(x+vx, y-1, a, 5*l/6, 1, grilla)){ 
+    if(vehit(jpos.x+jvel.x, jpos.y+5*l/6, a, l/6, 1, grilla) && !vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 1, grilla)){ 
       //Cuando hay una "rampa", el objeto sube
-      y -= 5;
+      jpos.y -= 5;
     }
     //MOVIMIENTO PROVOCADO POR EL USUARIO
-    if(salto == 0 && vehit(x, y+l+vy, a, 0, 1, grilla) && input[0] == 'f'){  //Si está presionada "." saltamos
-      vy = -6.5;
+    if(!cubo.salt){
+    if(salto == 0 && vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) && input[0] == 'f'){  //Si está presionada "." saltamos
+      jvel.y = -6.5;
       salto = 1;
-    }if(vx < 4.5 && input[1] == 'd'){ //Si está presionada "d" nos movemos a la derecha
-      vx += 0.2;
-    }if(vx > -4.5 && input[2] == 'a'){ //Si está presionada "a" nos movemos a la izquierda
-      vx -= 0.2;
-    }if(input[3] == 'w' && vehit(x, y-1, a, l+2, 3, grilla)){
-      vy = -1;
+    }if(jvel.x < 4.5 && input[1] == 'd'){ //Si está presionada "d" nos movemos a la derecha
+      jvel.x += 0.2;
+    }if(jvel.x > -4.5 && input[2] == 'a'){ //Si está presionada "a" nos movemos a la izquierda
+      jvel.x -= 0.2;
+    }if(input[3] == 'w' && vehit(jpos.x, jpos.y-1, a, l+2, 3, grilla)){
+      jvel.y = -1;
+    }
     }
     //LIMITACIONES AL HABER UN CHOQUE DE HITBOX
-    if(vehit(x+vx, y-1, a, 5*l/6, 1, grilla) && vx != 0){
+    if(vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 1, grilla) && jvel.x != 0){
       //Evitar movimiento cerca de paredes
-      vx = 0;
-    }if(vehit(x, y+vy, a, 0, 1, grilla)){ //Chocar contra un "techo"
-      vy = 0;
-    }if(vehit(x, y+l+vy, a, 0, 1, grilla)) { //Chocar contra un "piso"
-      vy = 0;
+      jvel.x = 0;
+    }if(vehit(jpos.x, jpos.y+jvel.y, a, 0, 1, grilla)){ //Chocar contra un "techo"
+      jvel.y = 0;
+    }if(vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla)) { //Chocar contra un "piso"
+      jvel.y = 0;
       if(input[0] == 0) //Que pueda volver a saltar después de soltar la tecla respectiva
       salto = 0;
     }//MODIFICAR LA POSICIÓN SEGÚN LA VELOCIDAD
-    x += vx;
-    y += vy;
+    jpos.x += jvel.x;
+    jpos.y += jvel.y;
   }
   
   void movimiento() { //Indicar que una tecla fue presionada
@@ -80,8 +80,8 @@ class Jugador{
   }
   void sprite() {
     fill(255, 0, 0);
-    rect(x, y, a, l);
+    rect(jpos.x, jpos.y, a, l);
     fill(-1);
-    genhitbox(x, y, a, l, 2, grilla);
+    genhitbox(jpos.x, jpos.y, a, l, 2, grilla);
   }
 }
