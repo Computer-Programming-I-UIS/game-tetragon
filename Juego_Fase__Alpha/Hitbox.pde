@@ -1,7 +1,7 @@
 //FUNCIONES IMPORTANTES PARA EL HITBOX
 void gengrilla(float grilla[][]){ //Generar la grilla
-  for(int i = 0; i <= width+50; i++){
-    for(int j = 0; j <= height+50; j++){
+  for(int i = 0; i <= width+100; i++){
+    for(int j = 0; j <= height+100; j++){
       grilla[i][j] = 0;
     }
   }

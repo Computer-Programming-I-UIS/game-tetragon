@@ -1,5 +1,5 @@
 class Jugador{
-  PVector jpos,jvel;
+  
   float a = 30;
   float l = 30;
   float grilla[][];
@@ -29,17 +29,17 @@ class Jugador{
       jpos.y -= 5;
     }
     //MOVIMIENTO PROVOCADO POR EL USUARIO
-    if(!cubo.salt){
-    if(salto == 0 && vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) && input[0] == 'f'){  //Si está presionada "." saltamos
-      jvel.y = -6.5;
-      salto = 1;
-    }if(jvel.x < 4.5 && input[1] == 'd'){ //Si está presionada "d" nos movemos a la derecha
-      jvel.x += 0.2;
-    }if(jvel.x > -4.5 && input[2] == 'a'){ //Si está presionada "a" nos movemos a la izquierda
-      jvel.x -= 0.2;
-    }if(input[3] == 'w' && vehit(jpos.x, jpos.y-1, a, l+2, 3, grilla)){
-      jvel.y = -1;
-    }
+    if(cubo.salt == 0){ //Solo cuando el cubo lo acompaña
+      if(salto == 0 && vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) && input[0] == 'f'){  //Si está presionada "." saltamos
+        jvel.y = -6.5;
+        salto = 1;
+      }if(jvel.x < 4.5 && input[1] == 'd'){ //Si está presionada "d" nos movemos a la derecha
+        jvel.x += 0.2;
+      }if(jvel.x > -4.5 && input[2] == 'a'){ //Si está presionada "a" nos movemos a la izquierda
+        jvel.x -= 0.2;
+      }if(input[3] == 'w' && vehit(jpos.x, jpos.y-1, a, l+2, 3, grilla)){
+        jvel.y = -1;
+      }
     }
     //LIMITACIONES AL HABER UN CHOQUE DE HITBOX
     if(vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 1, grilla) && jvel.x != 0){
