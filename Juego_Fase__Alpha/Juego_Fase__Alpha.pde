@@ -1,13 +1,7 @@
 Jugador tetra;
 Cubichoque cubo;
 ArrayList<Plataforma> Plataformas = new ArrayList<Plataforma>();
-Plataforma prueba;
-Plataforma esc1;
-Plataforma lim_der;
-Plataforma lim_izq;
-Plataforma lim_sup;
-Plataforma lim_inf;
-float grilla[][] = new float[850+51][900+51];
+float grilla[][] = new float[850+101][900+101];
 float a = 10, l = 10;
 PVector jpos,jvel,cvel;
 
@@ -29,12 +23,11 @@ void draw(){
   noStroke();
   background(-1);
   gengrilla(grilla);
+  
   Plataforma plat1;
   for(int i = 0;i < Plataformas.size();i++){
     plat1 = Plataformas.get(i);
     plat1.sprite();
-    esc1.sprite();
-    prueba.sprite();
   }
   tetra.sprite();
   tetra.posicion();
@@ -55,6 +48,5 @@ void mousePressed(){
   switch(cubo.salt){ //Pa que cambie pues
     case 0: cubo.salt = 1;break;
     case 1: cubo.salt = 2;break;
-    case 2: cubo.salt = 0;break;
   }
 }

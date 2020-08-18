@@ -8,8 +8,8 @@ void gengrilla(float grilla[][]){ //Generar la grilla
 }
 
 void genhitbox(float x,float y,float a,float l,float t, float grilla[][]){ //Cambiar el valor de la grilla a algún valor en específico según la naturaleza del objeto
-  for(int i = round(x); i <= round(x+a); i++){
-    for(int j = round(y); j <= round(y+l); j++){
+  for(int i = abs(round(x)); i <= abs(round(x+a)); i++){
+    for(int j = abs(round(y)); j <= abs(round(y+l)); j++){
       grilla[i][j] = t; //Determinar valor de la grilla en esa zona
       // t = 0 => Espacio vacío
       // t = 1 => Pared
@@ -21,8 +21,8 @@ void genhitbox(float x,float y,float a,float l,float t, float grilla[][]){ //Cam
 
 boolean vehit(float x,float y,float a,float l,float t, float grilla[][]){ 
   boolean check = false;
-  for(int i = round(x); i <= round(x+a); i++){
-    for(int j = round(y); j <= round(y+l); j++){
+  for(int i = abs(round(x)); i <= abs(round(x+a)); i++){
+    for(int j = abs(round(y)); j <= abs(round(y+l)); j++){
       if(grilla[i][j] == t){
         check = true;
         break;

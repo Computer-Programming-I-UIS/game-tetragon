@@ -64,8 +64,6 @@ class Cubichoque{
     
   }
   void disp(){
-         
-    genhitbox(rx,ry,20,20,2,grilla);
     
     if(salt==1){ //Mientras apunta
       float ang = 0; 
@@ -76,10 +74,8 @@ class Cubichoque{
       cvel.x = cos(ang);
       cvel.y = sin(ang);
       cvel.div(cvel.mag()); //Vector unitario por si acaso algo maluco pasa :u
-      
     }
-    if(salt==2){ //Mientras pega el severo viajesote
-      
+    if(salt==2){ //Mientras pega el severo viajesote  
       cvel.y-=-0.01;
       rx+= 4*cvel.x;
       ry+= 3*cvel.y;
@@ -87,9 +83,8 @@ class Cubichoque{
       if((rx > width || rx < 0)||(ry > height || ry < 0)){ //Para que no este OoB, vuelve al modo apuntar
         salt = 1;
       }
-      
     }
-
+    genhitbox(rx,ry,20,20,2,grilla);
     if(vehit(rx+4*cvel.x,ry+4*cvel.y,20,5*20/6,1,grilla) && salt == 2){ //Cuando se choca se detiene 
       cvel.y = 0;
       cvel.x = 0;
