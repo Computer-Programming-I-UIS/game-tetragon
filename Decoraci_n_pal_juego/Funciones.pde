@@ -60,6 +60,7 @@ float Quadrangle(float t){
 }
 
 float menu (float t){
+  t++;
   noStroke();
   pushMatrix();
   for(int i = 0; i <= 20; i++){
@@ -189,4 +190,29 @@ float menu (float t){
   text("PRESIONA ENTER PARA EMPEZAR", width/2, 3*height/5);
   d = lightOn(d, 0);
   return t;
+}
+
+void tetra(float x, float y, float s){
+  pushMatrix();
+  translate(x, y);
+  scale(s);
+  noStroke();
+  fill(20, 155, 20);
+  rect(0,5*sin(t/15), 100, 100);
+  pushMatrix();
+  translate(0, 5*sin(t/15));
+  fill(0 , 255, 0);
+  beginShape();
+  vertex(50, 0);
+  vertex(100, 50);
+  vertex(50, 100);
+  vertex(0, 50);
+  endShape();
+  popMatrix();
+  fill(50 , 255, 50);
+  rect(20, 120+5*sin(t/15+1), 60, 100);
+  rect(-20, 140+5*sin(t/15+1.5), 20, 40);
+  rect(100, 140+5*sin(t/15+1.5), 20, 40);
+  t++;
+  popMatrix();
 }
