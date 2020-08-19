@@ -54,6 +54,7 @@ class Jugador{
     }//MODIFICAR LA POSICIÓN SEGÚN LA VELOCIDAD
     jpos.x += jvel.x;
     jpos.y += jvel.y;
+    
   }
   
   void movimiento() { //Indicar que una tecla fue presionada

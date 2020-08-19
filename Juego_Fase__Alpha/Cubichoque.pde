@@ -74,15 +74,22 @@ class Cubichoque{
       cvel.x = cos(ang);
       cvel.y = sin(ang);
       cvel.div(cvel.mag()); //Vector unitario por si acaso algo maluco pasa :u
+      
     }
     if(salt==2){ //Mientras pega el severo viajesote  
       cvel.y-=-0.01;
       rx+= 4*cvel.x;
-      ry+= 3*cvel.y;
-      
-      if((rx > width-10  || rx < 10)||(ry > height-10|| ry <  10)){ //Para que no este OoB, vuelve al modo apuntar
+      ry+= 12*cvel.y;
+      if(((rx > width-10  || rx < 10 || ry > height || ry < 10))){ //Para que no este OoB, vuelve al modo apuntar
         salt = 1;
       }
+      for(int i = 4;i < Plataformas.size();i++){
+          plat1 = Plataformas.get(i);
+          if((rx < plat1.x+plat1.a && rx > plat1.x &&
+             ry < plat1.y+plat1.l && ry > plat1.y) && plat1.t == 1){
+             salt = 1;
+             }
+          }
     }
     genhitbox(rx,ry,20,20,2,grilla);
     if(vehit(rx+4*cvel.x,ry+4*cvel.y,20,5*20/6,1,grilla) && salt == 2){ //Cuando se choca se detiene 
@@ -99,10 +106,10 @@ class Cubichoque{
        jpos.x = rx+10;
      }
      if(ry > height/2){
-       jpos.y = ry-10;
+       jpos.y = ry-20;
      }
      else if(ry < height/2){
-       jpos.y = ry+10;
+       jpos.y = ry+20;
      }
      estat = 0; 
      salt = 0;
