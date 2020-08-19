@@ -80,7 +80,7 @@ class Cubichoque{
       rx+= 4*cvel.x;
       ry+= 3*cvel.y;
       
-      if((rx > width || rx < 0)||(ry > height || ry < 0)){ //Para que no este OoB, vuelve al modo apuntar
+      if((rx > width-10  || rx < 10)||(ry > height-10|| ry <  10)){ //Para que no este OoB, vuelve al modo apuntar
         salt = 1;
       }
     }

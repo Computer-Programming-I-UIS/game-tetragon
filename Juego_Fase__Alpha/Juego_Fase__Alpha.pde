@@ -72,5 +72,5 @@ void stages(){
     Plataformas.add(new Plataforma ( 400, 500, 100, 50, 1, grilla));
     crear = 0;
     break;
-}
+  }
 }
