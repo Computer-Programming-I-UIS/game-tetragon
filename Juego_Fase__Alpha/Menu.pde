@@ -137,7 +137,7 @@ float lightOn(float u, float c){
     rect(0, 0, width, height);
     u += 2;
     if(u > 255){
-      stage = 1;
+      menu = 1;
     }
   }
   return u;
