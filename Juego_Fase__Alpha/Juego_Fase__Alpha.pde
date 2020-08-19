@@ -2,8 +2,11 @@ Jugador tetra;
 Cubichoque cubo;
 ArrayList<Plataforma> Plataformas = new ArrayList<Plataforma>();
 float grilla[][] = new float[850+101][900+101];
-float a = 10, l = 10;
+float a = 10, l = 10,t,d;
+float[] u = new float[3];
 PVector jpos,jvel,cvel;
+int stage = 0;
+PFont mono;
 
 void setup(){
   size(750, 800);
@@ -16,28 +19,39 @@ void setup(){
   Plataformas.add(new Plataforma( 0, height-10, width, 25, 1, grilla));
   Plataformas.add(new Plataforma( 100, 700, 30, 100, 3, grilla));
   Plataformas.add(new Plataforma ( 400, 500, 100, 50, 1, grilla));
+  mono = createFont("Impact", 32);
 }
 
 void draw(){
-  rectMode(CORNER);
-  noStroke();
-  background(-1);
-  gengrilla(grilla);
-  
-  Plataforma plat1;
-  for(int i = 0;i < Plataformas.size();i++){
-    plat1 = Plataformas.get(i);
-    plat1.sprite();
+  switch(stage){
+    case 1:
+    rectMode(CORNER);
+    noStroke();
+    background(-1);
+    gengrilla(grilla);
+    
+    Plataforma plat1;
+    for(int i = 0;i < Plataformas.size();i++){
+      plat1 = Plataformas.get(i);
+      plat1.sprite();
+    }
+    tetra.sprite();
+    tetra.posicion();
+    cubo.dibujar();
+    cubo.disp();
+    break;
+    
+    case 0:
+    
+    background(0);
+    t = menu(t);
+    break;
   }
-  tetra.sprite();
-  tetra.posicion();
-  cubo.dibujar();
-  cubo.disp();
-  
 }
 
 void keyPressed(){
   tetra.movimiento();
+
 }
 
 void keyReleased(){

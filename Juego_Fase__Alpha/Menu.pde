@@ -1,65 +1,3 @@
-int transicion(int x){
-  noStroke();
-  fill(0);
-  if( x >= width){
-      fill(0, 0, 0, 255-0.2*(x-width));
-  }
-  for(int i = 0; i <= 10; i++){
-    if(x <= 5*width){
-      rect(0, 80*i+40, x, 40);
-      rect(width, 80*i, -x, 40);
-    }
-  }
-  x += 10;
-  return x;
-}
-
-void fuego(){
-  for(int i = 1; i <= 20; i++){
-    float u = random(-1, 1);
-    fill(255, 200, 0, 255-255/20*i);
-    ellipse(width/2, height/2, i*i/10+u, i*i/10+u);
-  }
-}
-
-float lightOn(float u, float c){
-  if(key == ENTER){
-    fill(c, c, c, u);
-    rect(0, 0, width, height);
-    u += 2;
-    
-  }
-  return u;
-}
-
-float Quadrangle(float t){
-  if(mousePressed){
-    x += (mouseX-x)/10;
-    y += (mouseY-y)/10;
-    if(dist(x, y, mouseX, mouseY) <= 1){
-      x = mouseX;
-      y = mouseY;
-    }
-    t = 0;
-  }else{
-    t += 0.2;
-    if(100 >= x || 100 <= x)
-    x += (100-x)/10;
-    if(100 >= y || 100 <= y)
-    y += (100-y)/10+sin(t/6);
-  }
-  pushMatrix();
-  translate(x, y);
-  rotate(t);
-  noStroke();
-  fill(255, 0, 0);
-  rect(-2*a, -2*l, 4*a, 4*l);
-  fill(250, 250, 0);
-  rect(-a/2, -l/2, a, l);
-  popMatrix();
-  return t;
-}
-
 float menu (float t){
   t++;
   noStroke();
@@ -193,27 +131,14 @@ float menu (float t){
   return t;
 }
 
-void tetra(float x, float y, float s){
-  pushMatrix();
-  translate(x, y);
-  scale(s);
-  noStroke();
-  fill(20, 155, 20);
-  rect(0,5*sin(t/15), 100, 100);
-  pushMatrix();
-  translate(0, 5*sin(t/15));
-  fill(0 , 255, 0);
-  beginShape();
-  vertex(50, 0);
-  vertex(100, 50);
-  vertex(50, 100);
-  vertex(0, 50);
-  endShape();
-  popMatrix();
-  fill(50 , 255, 50);
-  rect(20, 120+5*sin(t/15+1), 60, 100);
-  rect(-20, 140+5*sin(t/15+1.5), 20, 40);
-  rect(100, 140+5*sin(t/15+1.5), 20, 40);
-  t++;
-  popMatrix();
+float lightOn(float u, float c){
+  if(key == ENTER){
+    fill(c, c, c, u);
+    rect(0, 0, width, height);
+    u += 2;
+    if(u > 255){
+      stage = 1;
+    }
+  }
+  return u;
 }

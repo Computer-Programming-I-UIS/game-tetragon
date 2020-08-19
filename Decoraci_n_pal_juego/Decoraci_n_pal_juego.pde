@@ -10,6 +10,6 @@ void setup(){
 void draw(){
   background(0);
   t = menu(t);
-  t++;
+  
   println( " X: " + mouseX + " Y: "+ mouseY);
 }
