@@ -5,6 +5,7 @@ class Cubichoque{
                           Salt = 1 => Apuntando 
                           Salt = 2 => Disparado el cubo
                           Estat es para que solo halla un choque*/
+  char dir,dir2;
   Cubichoque(){
     cvel = new PVector(0,0); //Velocidad
     cpos = new PVector(width/2,height/2); //Posicion normal del bichi
@@ -40,8 +41,8 @@ class Cubichoque{
       translate(cpos.x, cpos.y);
       rotate(rot);
       
-      rx = screenX(cpos.x*0.05,cpos.y*0.05); //Tambien se actualiza acá just in case
-      ry = screenY(cpos.x*0.05,cpos.y*0.05);
+      rx = screenX(cpos.x*0.025,cpos.y*0.025); //Tambien se actualiza acá just in case
+      ry = screenY(cpos.x*0.025,cpos.y*0.025);
       
       noStroke();
       fill(25, 25 ,200);
@@ -77,40 +78,39 @@ class Cubichoque{
       
     }
     if(salt==2){ //Mientras pega el severo viajesote  
+      
       cvel.y-=-0.01;
+      if(cvel.x > 0){dir = 'r';}
+      else{dir = 'l';}
+      if(cvel.y > 0){dir2 = 'd';}
+      else{dir2 = 'u';}
       rx+= 4*cvel.x;
       ry+= 12*cvel.y;
-      if(((rx > width-10  || rx < 10 || ry > height || ry < 10))){ //Para que no este OoB, vuelve al modo apuntar
+      if(((rx+20 > width-20  || rx < 20 || ry < 19))){ //Para que no este OoB, vuelve al modo apuntar
         salt = 1;
       }
-      for(int i = 4;i < Plataformas.size();i++){
+      for(int i = 0;i < Plataformas.size();i++){
           plat1 = Plataformas.get(i);
-          if((rx < plat1.x+plat1.a && rx > plat1.x &&
-             ry < plat1.y+plat1.l && ry > plat1.y) && plat1.t == 1){
-             salt = 1;
+          if(((rx+20 < plat1.x+plat1.a && rx > plat1.x) &&
+              (ry+20 < plat1.y+plat1.l && ry > plat1.y)) && plat1.t == 1){
+               salt = 1;
              }
           }
     }
     genhitbox(rx,ry,20,20,2,grilla);
-    if(vehit(rx+4*cvel.x,ry+4*cvel.y,20,5*20/6,1,grilla) && salt == 2){ //Cuando se choca se detiene 
+    if(vehit(rx+4*cvel.x,ry+4*cvel.y,20,20,1,grilla) && salt == 2){ //Cuando se choca se detiene 
       cvel.y = 0;
       cvel.x = 0;
       estat = 1;
     }
     
     if(estat == 1){ //Cuando termine el movimiento y confirmadisimo que chocó se tpea el jugador
-     if(rx > width/2){ //Condiciones pa que no se salga del mapa Xd
-       jpos.x = rx-10;
-     }
-     else if(rx < width/2){
-       jpos.x = rx+10;
-     }
-     if(ry > height/2){
-       jpos.y = ry-20;
-     }
-     else if(ry < height/2){
-       jpos.y = ry+20;
-     }
+   
+     if(dir == 'l'){jpos.x = rx + 10;}
+     else{jpos.x = rx - 10;}
+     if(dir2 == 'u'){jpos.y = ry + 10;}
+     else{jpos.y = ry - 10;}
+
      estat = 0; 
      salt = 0;
     }

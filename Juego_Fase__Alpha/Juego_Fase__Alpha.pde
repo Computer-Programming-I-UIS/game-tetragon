@@ -9,8 +9,7 @@ int stage = 1,crear = 1,menu = 1;
 PFont mono;
 Plataforma plat1;
 
-void setup(){
-  
+void setup(){ 
   size(750, 800);
   frameRate(60);
   cubo = new Cubichoque();
