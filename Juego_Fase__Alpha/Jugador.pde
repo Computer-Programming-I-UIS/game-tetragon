@@ -30,7 +30,7 @@ class Jugador{
       jpos.y -= 5;
     }
     //MOVIMIENTO PROVOCADO POR EL USUARIO
-    if(cubo.salt == 0){ //Solo cuando el cubo lo acompaña
+    if(cubo.salt == 0 && jvel.y != 0){ //Solo cuando el cubo lo acompaña
       if(salto == 0 && vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) && input[0] == 'f'){  //Si está presionada "." saltamos
         jvel.y = -6.5;
         salto = 1;

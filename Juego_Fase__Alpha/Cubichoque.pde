@@ -9,6 +9,8 @@ class Cubichoque{
   Cubichoque(){
     cvel = new PVector(0,0); //Velocidad
     cpos = new PVector(width/2,height/2); //Posicion normal del bichi
+    a = 20;
+    l = 20;
   }
   
   void dibujar(){ //Hace todo lol
@@ -24,16 +26,20 @@ class Cubichoque{
       rx = screenX(cpos.x*0.05,cpos.y*0.05);
       ry = screenY(cpos.x*0.05,cpos.y*0.05); //Dan las coordenadas sin importar hasta donde rotó, pero son giganormes Xd
       
+      rectMode(CENTER);
+      
+      noStroke();
       fill(25, 25 ,200);
-      rect(cpos.x*0.05,cpos.y*0.05, 2*a, 2*l);
+      rect(cpos.x*0.1,cpos.y*0.1,20,20);
       fill(250, 250, 0);
-      rect(cpos.x*0.05+a/2,cpos.y*0.05+l/2, a/2, l/2);
+      rect(cpos.x*0.1,cpos.y*0.1,5,5);
       
       popMatrix();
      
     }
     
     else if (salt == 0){ //Acompañando al jugador, ta rotating todo creisi
+      
       rot+= 0.2;
       cpos.x += (jpos.x-a-cpos.x)/10;
       cpos.y += (jpos.y-a-cpos.y)/10+sin(rot/6);
@@ -41,14 +47,15 @@ class Cubichoque{
       translate(cpos.x, cpos.y);
       rotate(rot);
       
-      rx = screenX(cpos.x*0.025,cpos.y*0.025); //Tambien se actualiza acá just in case
-      ry = screenY(cpos.x*0.025,cpos.y*0.025);
+      rx = screenX(cpos.x*0.05,cpos.y*0.05); //Tambien se actualiza acá just in case
+      ry = screenY(cpos.x*0.05,cpos.y*0.05);
       
+      rectMode(CENTER);
       noStroke();
       fill(25, 25 ,200);
-      rect(-a, -l, 2*a, 2*l);
+      rect(cpos.x*0.005,cpos.y*.005,a,l);
       fill(250, 250, 0);
-      rect(-a/4, -l/4, a/2, l/2);
+      rect(cpos.x*0.005,cpos.y*.005,a/4,l/4);
       popMatrix();
     }
     
@@ -86,19 +93,19 @@ class Cubichoque{
       else{dir2 = 'u';}
       rx+= 4*cvel.x;
       ry+= 12*cvel.y;
-      if(((rx+20 > width-20  || rx < 20 || ry < 19))){ //Para que no este OoB, vuelve al modo apuntar
+      if(((rx+a > width-a  || rx < a || ry < a-1))){ //Para que no este OoB, vuelve al modo apuntar
         salt = 1;
       }
       for(int i = 0;i < Plataformas.size();i++){
           plat1 = Plataformas.get(i);
-          if(((rx+20 < plat1.x+plat1.a && rx > plat1.x) &&
-              (ry+20 < plat1.y+plat1.l && ry > plat1.y)) && plat1.t == 1){
+          if(((rx+a < plat1.x+plat1.a && rx > plat1.x) &&
+              (ry+l < plat1.y+plat1.l && ry > plat1.y)) && plat1.t == 1){
                salt = 1;
              }
           }
     }
-    genhitbox(rx,ry,20,20,2,grilla);
-    if(vehit(rx+4*cvel.x,ry+4*cvel.y,20,20,1,grilla) && salt == 2){ //Cuando se choca se detiene 
+    genhitbox(rx,ry,a,l,2,grilla);
+    if(vehit(rx+4*cvel.x,ry+12*cvel.y,20,20,1,grilla) && salt == 2){ //Cuando se choca se detiene 
       cvel.y = 0;
       cvel.x = 0;
       estat = 1;
@@ -106,10 +113,10 @@ class Cubichoque{
     
     if(estat == 1){ //Cuando termine el movimiento y confirmadisimo que chocó se tpea el jugador
    
-     if(dir == 'l'){jpos.x = rx + 10;}
-     else{jpos.x = rx - 10;}
-     if(dir2 == 'u'){jpos.y = ry + 10;}
-     else{jpos.y = ry - 10;}
+     if(dir == 'l'){jpos.x = rx + tetra.a/2;}
+     else{jpos.x = rx - tetra.a/2;}
+     if(dir2 == 'u'){jpos.y = ry + tetra.l;}
+     else{jpos.y = ry - tetra.l;}
 
      estat = 0; 
      salt = 0;
