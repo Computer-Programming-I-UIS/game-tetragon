@@ -120,11 +120,27 @@ class Jugador{
     translate(20, 120+5*sin(tim/15+1));
     rect(0, 0, 60, 100);
     fill(20, 155, 20);
-    rect(10, 10, 20, 10);
-    rect(30, 10, 20, 10);
-    for(int i = 1; i <= 4; i++){
-      for(int j = 1; j <= 4; j++){
-        rect(10*i, 30+10*j, 10, 10);
+    if(input[1] == 0 && input[2] == 0){
+      rect(10, 10, 20, 10);
+      rect(30, 10, 20, 10);
+      for(int i = 1; i <= 4; i++){
+        for(int j = 1; j <= 4; j++){
+          rect(10*i, 30+10*j, 10, 10);
+        }
+      }
+    }else if(input[2] == 'a' && cubo.salt == 0){
+      rect(0,10, 20, 10);
+      for(int i = 1; i <= 2; i++){
+        for(int j = 1; j <= 4; j++){
+          rect(10*i-10, 30+10*j, 10, 10);
+        }
+      }
+    }else if(input[1] == 'd' && cubo.salt == 0){
+      rect(40,10, 20, 10);
+      for(int i = 1; i <= 2; i++){
+        for(int j = 1; j <= 4; j++){
+          rect(50-10*i+10, 30+10*j, 10, 10);
+        }
       }
     }
     popMatrix();
