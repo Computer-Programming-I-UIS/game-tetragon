@@ -120,7 +120,7 @@ class Jugador{
     translate(20, 120+5*sin(tim/15+1));
     rect(0, 0, 60, 100);
     fill(20, 155, 20);
-    if(input[1] == 0 && input[2] == 0){
+    if(vehit(jpos.x, jpos.y+l, a, 0, 1, grilla) || input[1] == 0 && input[2] == 0){
       rect(10, 10, 20, 10);
       rect(30, 10, 20, 10);
       for(int i = 1; i <= 4; i++){
