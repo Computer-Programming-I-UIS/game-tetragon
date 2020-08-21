@@ -27,7 +27,6 @@ float lightOn(float u, float c){
     fill(c, c, c, u);
     rect(0, 0, width, height);
     u += 2;
-    
   }
   return u;
 }
@@ -197,23 +196,80 @@ void tetra(float x, float y, float s){
   pushMatrix();
   translate(x, y);
   scale(s);
-  noStroke();
-  fill(20, 155, 20);
-  rect(0,5*sin(t/15), 100, 100);
+  strokeWeight(3);
+  //Cabeza:
   pushMatrix();
+  fill(20, 155, 20);
   translate(0, 5*sin(t/15));
+  rect(0, 0, 100, 100);
   fill(0 , 255, 0);
   beginShape();
   vertex(50, 0);
   vertex(100, 50);
   vertex(50, 100);
   vertex(0, 50);
+  vertex(50, 0);
   endShape();
+  fill(20, 155, 20);
+  ellipse(50, 50, 10, 10);
   popMatrix();
+  if(input[1] == 'd' && input[2] != 'a'){
+    a += 0.05;
+    if(l < 45 && l >= 0){
+      l++;
+    }
+  }if(input[2] == 'a' && input[1] != 'd'){
+    a -= 0.05;
+    if(l < 45 && l >= 0){
+      l++;
+    }
+  }if(input[1] == 0 && input[2] == 0){
+    a = 0;
+    if(l <= 45 && l > 0){
+      l--;
+    }
+  }
+  //Brazo Atrás:
+  fill(20, 155, 20);
+  pushMatrix();
+  translate(-5+l, 140+5*sin(t/15+1.5));
+  rotate(PI/3*sin(a));
+  rect(0, 0, 20, 60);
+  popMatrix();
+  //Cuerpo:
   fill(50 , 255, 50);
   rect(20, 120+5*sin(t/15+1), 60, 100);
-  rect(-20, 140+5*sin(t/15+1.5), 20, 40);
-  rect(100, 140+5*sin(t/15+1.5), 20, 40);
-  t++;
+  //Brazo Adelante
+  fill(20, 155, 20);
+  pushMatrix();
+  translate(85-l, 140+5*sin(t/15+1.5));
+  rotate(-PI/3*sin(a));
+  rect(0, 0, 20, 60);
   popMatrix();
+  popMatrix();
+  t++;
+}
+
+float flechas(float x, float y, float var){
+  strokeWeight(3);
+  for(int i = 1; i <= 20; i++){
+    if((var+i)%20 == 0){
+      fill(0, 255, 255);
+    }else{
+      fill(50, 50, 150);
+    }
+    pushMatrix();
+    translate(x, y+10*i);
+    beginShape();
+    vertex(0, 0);
+    vertex(50, -20);
+    vertex(100, 0);
+    vertex(90, 0);
+    vertex(50, -10);
+    vertex(10, 0);
+    endShape();
+    popMatrix();
+  }
+  var++;
+  return var;
 }
