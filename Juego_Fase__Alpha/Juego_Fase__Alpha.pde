@@ -5,16 +5,17 @@ float grilla[][] = new float[1250][1250];
 float a = 10, l = 10,t,d;
 float[] u = new float[3];
 PVector jpos,jvel,cvel,jpos2;
-int stage = 1,crear = 1,menu = 1;
+int stage = 1,crear = 1,menu = 0;
 PFont mono;
 Plataforma plat1;
 
 void setup(){ 
-  size(750, 800);
+  size(750, 600);
   frameRate(60);
   cubo = new Cubichoque();
   tetra = new Jugador(400, 100, grilla);
   mono = createFont("Impact", 32);
+  cubo.salt = 0;
 }
 
 void draw(){
