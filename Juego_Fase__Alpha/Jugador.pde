@@ -87,8 +87,6 @@ class Jugador{
     pushMatrix();
     translate(x, y); //Esto indica la parte superior izquierda del robot
     scale(s); //Esto indica la escala, usar 0.2 para el juego
-    stroke(1);
-    strokeWeight(3);
     //Brazo Atrás:
     fill(20, 155, 20);
     pushMatrix();
