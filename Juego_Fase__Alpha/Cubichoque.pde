@@ -15,7 +15,7 @@ class Cubichoque{
   
   void dibujar(){ //Hace todo lol
     
-    if(salt == 1){ //Cuando se esta puntando
+    if(salt == 1){ //Cuando se esta apuntando
       
       rot += 0.1;
       pushMatrix();
@@ -29,6 +29,12 @@ class Cubichoque{
       rectMode(CENTER);
       
       noStroke();
+      pushMatrix();
+      fill(25, 175 ,200);
+      translate(cpos.x*0.1,cpos.y*0.1);
+      rotate(PI/4);
+      rect(0, 0,20,20);
+      popMatrix();
       fill(25, 25 ,200);
       rect(cpos.x*0.1,cpos.y*0.1,20,20);
       fill(250, 250, 0);
@@ -52,6 +58,12 @@ class Cubichoque{
       
       rectMode(CENTER);
       noStroke();
+      pushMatrix();
+      fill(25, 175 ,200);
+      translate(cpos.x*0.005,cpos.y*.005);
+      rotate(PI/4);
+      rect(0, 0,20,20);
+      popMatrix();
       fill(25, 25 ,200);
       rect(cpos.x*0.005,cpos.y*.005,a,l);
       fill(250, 250, 0);
@@ -63,10 +75,16 @@ class Cubichoque{
       
       rectMode(CENTER);
       noStroke();
+      pushMatrix();
+      fill(25, 175 ,200);
+      translate(rx,ry);
+      rotate(PI/4);
+      rect(0, 0,20,20);
+      popMatrix();
       fill(25, 25 ,200);
-      rect(rx,ry,20,20);
+      rect(rx,ry,a,a);
       fill(250, 250, 0);
-      rect(rx,ry,5,5);
+      rect(rx,ry,a/4,a/4);
       
     }
     
