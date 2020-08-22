@@ -1,13 +1,140 @@
-int transicion(int x){
+float cinematica(float x){
+  background(0);
   noStroke();
-  fill(0);
-  if( x >= width){
-      fill(0, 0, 0, 255-0.2*(x-width));
+  textMode(CENTER);
+    switch (modo){
+      case 1: 
+        tetraCine(width/2-50, height/2-200, 1);
+        fill(255, t);
+        textFont(mono);
+        textSize(25);
+        text("Hola, soy Tetra, uno de los pocos habitantes de Euclidius...", 100, height-100);
+        break;
+      case 2:
+        pushMatrix();
+        rectMode(CENTER);
+        fill(25, 175 ,200);
+        translate(width/2,height/2);
+        rotate(t/20-PI/4);
+        scale(0.5);
+        rect(0, 0,100,100);
+        rotate(PI/4);
+        fill(25, 25 ,200);
+        rect(0, 0,100,100);
+        fill(250, 250, 0);
+        rect(0,0,25,25);
+        popMatrix();
+        fill(255, t);
+        textFont(mono);
+        textSize(25);
+        text("El otro es él, se llama Rubik, se la pasa flotando cerca de mí...", 100, height-100);
+        break;
+      case 3:
+        tetraCine(width/2-50, height/2-200, 1);
+        pushMatrix();
+        rectMode(CENTER);
+        fill(25, 175 ,200);
+        translate(width/2-100,height/2-100);
+        rotate(t/20-PI/4);
+        scale(0.5);
+        rect(0, 0,100,100);
+        rotate(PI/4);
+        fill(25, 25 ,200);
+        rect(0, 0,100,100);
+        fill(250, 250, 0);
+        rect(0,0,25,25);
+        popMatrix();
+        fill(255, t);
+        textFont(mono);
+        textSize(25);
+        text("Todo el tiempo lo pasamos juntos, es como mi sombra", 100, height-100);
+        textSize(25);
+        text("Desde que existo ha estado a mi lado...", 100, height-70);
+        break;
+      case 4: //estrellas
+        for(int i = 1; i <= 10; i++){
+          
+        }
+        fill(255, t);
+        textFont(mono);
+        textSize(20);
+        text("Euclidius es un lugar acogedor, aunque muy monótono y solitario", 100, height-100);
+        textSize(20);
+        text("Es por eso que siempre me he preguntado que habrá más allá...", 100, height-70);
+        break;
+
+      case 5:
+        pushMatrix();
+        rectMode(CENTER);
+        fill(25, 175 ,200);
+        translate(width/2,height/2);
+        rotate(t/20-PI/4);
+        scale(0.5);
+        rect(0, 0,100,100);
+        rotate(PI/4);
+        fill(25, 25 ,200);
+        rect(0, 0,100,100);
+        fill(250, 250, 0);
+        rect(0,0,25,25);
+        popMatrix();
+        fill(255, t);
+        textFont(mono);
+        textSize(20);
+        text("Rubik nunca ha pensado en eso, no sé si lo ignora,", 200, height-100);
+        textSize(20);
+        text("Si no me lo dice porque no sabe hablar", 250, height-75);
+        textSize(20);
+        text("O si simplemente no puede hablar...", 260, height-50);
+        break;
+        
+      case 6:
+        tetraCine(width/2-50, height/2-200, 1);
+        pushMatrix();
+        rectMode(CENTER);
+        fill(25, 175 ,200);
+        translate(width/2-100,height/2-100);
+        rotate(t/20-PI/4);
+        scale(0.5);
+        rect(0, 0,100,100);
+        rotate(PI/4);
+        fill(25, 25 ,200);
+        rect(0, 0,100,100);
+        fill(250, 250, 0);
+        rect(0,0,25,25);
+        popMatrix();
+        fill(255, t);
+        textFont(mono);
+        textSize(25);
+        fill(255, t);
+        textFont(mono);
+        textSize(20);
+        text("Sea como sea, ya es hora de cambiar, no podemos quedarnos por siempre aquí", 80, height-100);
+        textSize(20);
+        text("¡No solamente hay que vivir la vida, también hay que triunfar en ella!", 120, height-70);
+        break;
+    }
+  t += 1;  
+  noStroke();
+  if(x >= 5*width || x <= 500){
+    fill(255, t/4+50*sin(t/20));
+    textFont(mono);
+    textSize(10);
+    text("Presiona una tecla para continuar", 100, height-30);
   }
-  for(int i = 0; i <= 10; i++){
+  fill(255);
+  if(x >= 2*width){
+    fill(255, 255-0.2*(x-2*width));
+    if(x == 2*width){
+      modo++;
+      t = 0;
+    }
+  }
+  for(int i = 0; i <= height/20; i++){
     if(x <= 5*width){
-      rect(0, 80*i+40, x, 40);
-      rect(width, 80*i, -x, 40);
+      rect(0, height/5*i+height/10, x, height/10);
+      rect(width, height/5*i, -x, height/10);
+    }else if(keyPressed){
+      x = 0;
     }
   }
   x += 10;
@@ -17,11 +144,11 @@ int transicion(int x){
 void fuego(){
   for(int i = 1; i <= 20; i++){
     float u = random(-1, 1);
-    fill(255, 200, 0, 255-255/20*i);
-    ellipse(width/2, height/2, i*i/10+u, i*i/10+u);
+    fill(255, 200, 0, 255-255/50*i);
+    ellipse(width/2, height/2, i*i+u, i*i+u);
   }
 }
-
+/*
 float lightOn(float u, float c){
   if(key == ENTER){
     fill(c, c, c, u);
@@ -30,32 +157,22 @@ float lightOn(float u, float c){
   }
   return u;
 }
-
-float Quadrangle(float t){
-  if(mousePressed){
-    x += (mouseX-x)/10;
-    y += (mouseY-y)/10;
-    if(dist(x, y, mouseX, mouseY) <= 1){
-      x = mouseX;
-      y = mouseY;
-    }
-    t = 0;
-  }else{
-    t += 0.2;
-    if(100 >= x || 100 <= x)
-    x += (100-x)/10;
-    if(100 >= y || 100 <= y)
-    y += (100-y)/10+sin(t/6);
-  }
+*/
+float Quadrangle(float x, float y,float t){
   pushMatrix();
-  translate(x, y);
-  rotate(t);
-  noStroke();
-  fill(255, 0, 0);
-  rect(-2*a, -2*l, 4*a, 4*l);
+  rectMode(CENTER);
+  fill(25, 175 ,200);
+  translate(width/2,height/2);
+  rotate(t-PI/4);
+  scale(0.5);
+  rect(0, 0,100,100);
+  rotate(PI/4);
+  fill(25, 25 ,200);
+  rect(0, 0,100,100);
   fill(250, 250, 0);
-  rect(-a/2, -l/2, a, l);
+  rect(0,0,25,25);
   popMatrix();
+  t += 0.05;
   return t;
 }
 
@@ -188,19 +305,28 @@ float menu (float t){
   textFont(mono);
   textSize(abs(sin(PI*t/150)*5+15));
   text("PRESIONA ENTER PARA EMPEZAR", width/2, 3*height/5);
-  d = lightOn(d, 0);
+  //d = lightOn(d, 0);
   return t;
 }
 
-void tetra(float x, float y, float s){
+void tetraCine(float x, float y, float s){ 
+  rectMode(CORNER);
   pushMatrix();
-  translate(x, y);
-  scale(s);
-  strokeWeight(3);
+  translate(x, y); //Esto indica la parte superior izquierda del robot
+  scale(s); //Esto indica la escala, usar 0.2 para el juego
+  //Brazo Atrás:
+  fill(20, 155, 20);
+  pushMatrix();
+  translate(2.5+pow(lon,2), 140+5*sin(tim/15+1.5));
+  rotate(ang);
+  rect(-7.5, 0, 15, 60);
+  fill(0 , 255, 0);
+  rect(-7.5, 50, 15, 10);
+  popMatrix();
   //Cabeza:
   pushMatrix();
   fill(20, 155, 20);
-  translate(0, 5*sin(t/15));
+  translate(0, 10*sin(tim/15));
   rect(0, 0, 100, 100);
   fill(0 , 255, 0);
   beginShape();
@@ -211,43 +337,44 @@ void tetra(float x, float y, float s){
   vertex(50, 0);
   endShape();
   fill(20, 155, 20);
-  ellipse(50, 50, 10, 10);
-  popMatrix();
-  if(input[1] == 'd' && input[2] != 'a'){
-    a += 0.05;
-    if(l < 45 && l >= 0){
-      l++;
-    }
-  }if(input[2] == 'a' && input[1] != 'd'){
-    a -= 0.05;
-    if(l < 45 && l >= 0){
-      l++;
-    }
-  }if(input[1] == 0 && input[2] == 0){
-    a = 0;
-    if(l <= 45 && l > 0){
-      l--;
-    }
-  }
-  //Brazo Atrás:
-  fill(20, 155, 20);
-  pushMatrix();
-  translate(-5+l, 140+5*sin(t/15+1.5));
-  rotate(PI/3*sin(a));
-  rect(0, 0, 20, 60);
+  ellipse(50+2*lon, 50, 10, 10);
   popMatrix();
   //Cuerpo:
+  pushMatrix();
   fill(50 , 255, 50);
-  rect(20, 120+5*sin(t/15+1), 60, 100);
+  translate(20, 120+5*sin(tim/15+1));
+  rect(0, 0, 60, 100);
+  fill(20, 155, 20);
+  rect(10, 10, 20, 10);
+  rect(30, 10, 20, 10);
+  if(modo != 6){
+    for(int i = 1; i <= 4; i++){
+      for(int j = 1; j <= 4; j++){
+        rect(10*i+1, 30+10*j, 7, 7);
+      }
+    }
+  }else{
+    ang = PI/3*sin(tim/20);
+    lon = sqrt(45);
+    rect(40,10, 20, 10);
+      for(int i = 1; i <= 2; i++){
+        for(int j = 1; j <= 4; j++){
+          rect(50-10*i+10, 30+10*j, 10, 10);
+        }
+    }
+  }
+  popMatrix();
   //Brazo Adelante
   fill(20, 155, 20);
   pushMatrix();
-  translate(85-l, 140+5*sin(t/15+1.5));
-  rotate(-PI/3*sin(a));
-  rect(0, 0, 20, 60);
+  translate(100-pow(lon,2), 140+5*sin(tim/15+1.5));
+  rotate(-ang);
+  rect(-10, 0, 15, 60);
+  fill(0 , 255, 0);
+  rect(-10, 50, 15, 10);
   popMatrix();
   popMatrix();
-  t++;
+  tim++;
 }
 
 float flechas(float x, float y, float var){

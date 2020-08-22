@@ -2,7 +2,9 @@ Jugador tetra;
 Cubichoque cubo;
 ArrayList<Plataforma> Plataformas = new ArrayList<Plataforma>();
 float grilla[][] = new float[1250][1250];
-float a = 10, l = 10,t,d;
+float a = 10, l = 10, tim, ang, lon;
+int modo = 0;
+float[] t = new float[3];
 float[] u = new float[3];
 PVector jpos,jvel,cvel,jpos2;
 int stage = 1,crear = 1,menu = 0;
@@ -42,7 +44,7 @@ void draw(){
     
     case 0:
     background(0);
-    t = menu(t);
+    t = menu(t[0], t[1], t[2]);
     break;
   }
 }
