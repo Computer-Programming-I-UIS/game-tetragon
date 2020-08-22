@@ -46,12 +46,12 @@ class Cubichoque{
     
     else if (salt == 0){ //Acompañando al jugador, ta rotating todo creisi
       
-      rot+= 0.2;
+      rot++;
       cpos.x += (jpos.x-a-cpos.x)/10;
       cpos.y += (jpos.y-a-cpos.y)/10+sin(rot/6);
       pushMatrix();
       translate(cpos.x, cpos.y);
-      rotate(rot);
+      rotate(rot/10);
       
       rx = screenX(cpos.x*0.05,cpos.y*0.05); //Tambien se actualiza acá just in case
       ry = screenY(cpos.x*0.05,cpos.y*0.05);
