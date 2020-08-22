@@ -185,8 +185,15 @@ float[] menu (float t, float d, float x){
             text("Desde que existo ha estado a mi lado...", width/2, height-70);
             break;
           case 4: //estrellas
-            for(int i = 1; i <= 10; i++){
-              
+            for(int i = 0; i <= 10; i++){
+              fill(255, 20+50*sin(t/20));
+              ellipse(150+50*i, 250+75*sin(PI*i/4), 10, 10);
+              fill(255, 20+50*sin(t/20+PI/4));
+              ellipse(150+50*i, 250-75*sin(PI*i/4), 10, 10);
+              fill(255, 20+50*sin(t/20+PI/2));
+              ellipse(150+50*i, 250-75*cos(PI*i/4), 10, 10);
+              fill(255, 20+50*sin(t/20+3*PI/4));
+              ellipse(150+50*i, 250+75*cos(PI*i/4), 10, 10);
             }
             fill(255, t);
             textFont(mono);
