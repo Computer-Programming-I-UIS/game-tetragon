@@ -1,3 +1,43 @@
+float imgPlat(float x, float y, float a, float l, float var, float r, float g, float b){
+  //"x", "y" posición, "a","l" ancho y largo, "var" variable para que se actualice, y "r","g","b" determinan el color
+  noStroke();
+  rectMode(CORNER);
+  fill(r, g, b, 200+70*sin(var/25));
+  rect(x, y, a, l);
+  fill(0);
+  rect(x+a/20, y+l/20, 9*a/10, 9*l/10); 
+  //Borde Izquierdo: 0, 0, 5, 0
+  //Borde Derecho: -5, 0, 5, 0
+  //Intermedio: -5,0,10,0
+  //Normal: 0, 0, 0, 0
+  var++;
+  return var;
+}
+
+float flechas(float x, float y, float a, float l, float var){ 
+  //"x", "y" son la posición, "a" el ancho, "l" el largo y var sirve para que se actualice continuamente.
+  for(int i = 1; i <= l/10; i++){
+    if((var+i)%20 == 0){
+      fill(0, 255, 255);
+    }else{
+      fill(50, 50, 150);
+    }
+    pushMatrix();
+    translate(x, y+10*i);
+    beginShape();
+    vertex(0, 0);
+    vertex(a/2, -20);
+    vertex(a, 0);
+    vertex(9*a/10, 0);
+    vertex(a/2, -10);
+    vertex(a/10, 0);
+    endShape();
+    popMatrix();
+  }
+  var++;
+  return var;
+}
+
 float cinematica(float x){
   background(0);
   noStroke();
@@ -377,26 +417,4 @@ void tetraCine(float x, float y, float s){
   tim++;
 }
 
-float flechas(float x, float y, float var){
-  strokeWeight(3);
-  for(int i = 1; i <= 20; i++){
-    if((var+i)%20 == 0){
-      fill(0, 255, 255);
-    }else{
-      fill(50, 50, 150);
-    }
-    pushMatrix();
-    translate(x, y+10*i);
-    beginShape();
-    vertex(0, 0);
-    vertex(50, -20);
-    vertex(100, 0);
-    vertex(90, 0);
-    vertex(50, -10);
-    vertex(10, 0);
-    endShape();
-    popMatrix();
-  }
-  var++;
-  return var;
-}
+
