@@ -355,4 +355,3 @@ void tetraCine(float x, float y, float s){
   popMatrix();
   tim++;
 }
-

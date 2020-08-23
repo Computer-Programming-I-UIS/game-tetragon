@@ -16,6 +16,7 @@ class Cubichoque{
   void dibujar(){ //Hace todo lol
     
     if(salt == 1){ //Cuando se esta apuntando
+      jvel.x = 0;
       
       rot += 0.1;
       pushMatrix();
@@ -111,7 +112,7 @@ class Cubichoque{
       else{dir2 = 'u';}
       rx+= 4*cvel.x;
       ry+= 12*cvel.y;
-      if(((rx+a > width-a  || rx < a || ry < a-1))){ //Para que no este OoB, vuelve al modo apuntar
+      if(((rx+a > width-a  || rx < a /*|| ry < a-1*/))){ //Para que no este OoB, vuelve al modo apuntar
         salt = 1;
       }
       for(int i = 0;i < Plataformas.size();i++){

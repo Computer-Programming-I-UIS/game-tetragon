@@ -7,7 +7,7 @@ int modo = 0;
 float[] t = new float[3];
 float[] u = new float[3];
 PVector jpos,jvel,cvel,jpos2;
-int stage = 1,crear = 1,menu = 0;
+int stage = 0,crear = 1,menu = 0;
 PFont mono;
 Plataforma plat1;
 
@@ -15,12 +15,13 @@ void setup(){
   size(750, 600);
   frameRate(60);
   cubo = new Cubichoque();
-  tetra = new Jugador(400, 100, grilla);
+  tetra = new Jugador(width/2, 400, grilla);
   mono = createFont("Impact", 32);
   cubo.salt = 0;
 }
 
 void draw(){
+  
   switch(menu){
     case 1:
     if(crear == 1){
@@ -40,12 +41,29 @@ void draw(){
     tetra.posicion();
     cubo.dibujar();
     cubo.disp();
+    
+    if(jpos.y < 0){
+      crear = 1;
+      stage++;
+      stages();
+      jpos.y = height-tetra.l-10;
+    }
+    else if(jpos.y+tetra.l > height){
+      crear = 1;
+      stage--;
+      stages();
+      jpos.y = 10;
+    }
+    
     break;
+    
     
     case 0:
     background(0);
     t = menu(t[0], t[1], t[2]);
     break;
+    
+    
   }
 }
 
@@ -66,15 +84,28 @@ void mousePressed(){
 }
 
 void stages(){
+Plataformas.clear();
+  
+  Plataformas.add(new Plataforma( width-20, 0, 20, height, 1, grilla));
+  Plataformas.add(new Plataforma( 0, 0, 20, height, 1, grilla));
+  
+   //Limites
   switch(stage){
-    case 1:
-      Plataformas.add(new Plataforma( width-20, 0, 20, height, 1, grilla));
-      Plataformas.add(new Plataforma( 0, 0, 20, height, 1, grilla));
-      Plataformas.add(new Plataforma( 0, 0, width-20, 20, 1, grilla));
+    
+    case 0: //Tutorial
       Plataformas.add(new Plataforma( 0, height-20, width, 100, 1, grilla));
-      Plataformas.add(new Plataforma( 100, 700, 30, 99, 3, grilla));
-      Plataformas.add(new Plataforma( 400, 500, 100, 50, 1, grilla));
-      Plataformas.add(new Plataforma( 520, 400, 50, 100,1,grilla));
+      Plataformas.add(new Plataforma( 0, height-300, 220,300,1,grilla));
+      Plataformas.add(new Plataforma( width-220, height-300, 220,300,1,grilla));
+      Plataformas.add(new Plataforma( 300, 100, 100, 50, 1 ,grilla));
+      Plataformas.add(new Plataforma( 370, 0 , 30, 100, 3 ,grilla));
+      
+      crear = 0;
+      break;
+      
+    case 1:
+      Plataformas.add(new Plataforma( 370, height-100, 30 , 100 ,3 ,grilla));
+      
+      
       crear = 0;
       break;
     case 2:
