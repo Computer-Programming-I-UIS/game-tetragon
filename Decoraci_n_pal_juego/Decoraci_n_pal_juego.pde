@@ -10,7 +10,8 @@ void setup(){
 }
 
 void draw(){
-  x = cinematica(x);
+  t = imgPlat(300, 300, 100, 100, t, 255, 50, 255);
+  x = flechas(100, 100, 100, 100, x);
   println( " X: " + x + " Y: "+ mouseY);
 }
 
