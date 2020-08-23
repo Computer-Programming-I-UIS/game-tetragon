@@ -15,6 +15,7 @@ class Jugador{
   }
   
   void posicion() {
+
     //MOVIMIENTO PROVOCADO AL NO PRESIONAR TECLAS
     if(jvel.x > 0.25 && input[1] == 0){ //Aplicar una fricción para que se detenga 
       jvel.x -= 0.25;
@@ -30,7 +31,7 @@ class Jugador{
       jpos.y -= 5;
     }
     //MOVIMIENTO PROVOCADO POR EL USUARIO
-    if(cubo.salt == 0){ //Solo cuando el cubo lo acompaña
+    if(cubo.salt == 0 && (vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) || vehit(jpos.x, jpos.y+l+jvel.y, a, l, 3, grilla))){ //Solo cuando el cubo lo acompaña
       if(salto == 0 && vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) && input[0] == 'f'){  //Si está presionada "." saltamos
         jvel.y = -6.5;
         salto = 1;
@@ -39,7 +40,7 @@ class Jugador{
       }if(jvel.x > -4.5 && input[2] == 'a'){ //Si está presionada "a" nos movemos a la izquierda
         jvel.x -= 0.2;
       }if(input[3] == 'w' && vehit(jpos.x, jpos.y-1, a-2, l+2, 3, grilla)){
-        jvel.y = -1;
+        jvel.y = -2.5;
       }
     }
     //LIMITACIONES AL HABER UN CHOQUE DE HITBOX
@@ -81,6 +82,7 @@ class Jugador{
     }if(key == 'w' || key == 'W'){
       input[3] = 0;
     }
+    
   }
   
   void tetra(float x, float y, float s){ 
@@ -89,6 +91,7 @@ class Jugador{
     scale(s); //Esto indica la escala, usar 0.2 para el juego
     //Brazo Atrás:
     fill(20, 155, 20);
+    
     pushMatrix();
     translate(2.5+pow(lon,2), 140+5*sin(tim/15+1.5));
     rotate(ang);

@@ -127,7 +127,8 @@ float[] menu (float t, float d, float x){
   textFont(mono);
   textSize(abs(sin(PI*t/150)*5+15));
   text("PRESIONA ENTER PARA EMPEZAR", width/2, 3*height/5);
-  if(key == ENTER){
+  if(menu == -1){
+    
     fill(0, 0, 0, d);
     rect(0, 0, width, height);
     d += 2;
@@ -135,6 +136,7 @@ float[] menu (float t, float d, float x){
       background(0);
       noStroke();
       textAlign(CENTER);
+      
         switch (modo){
           case 1: 
             tetraCine(width/2-50, height/2-200, 1);
@@ -278,8 +280,10 @@ float[] menu (float t, float d, float x){
         }
       }
       x += 10;
-      if(modo > 6)
+      if(modo > 6){
       menu = 1;
+      }
+      
     }
   }
   float [] respuesta = {t, d, x};
