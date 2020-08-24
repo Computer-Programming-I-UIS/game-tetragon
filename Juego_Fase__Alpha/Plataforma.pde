@@ -23,10 +23,10 @@ class Plataforma{
     genhitbox(x, y, a, l, t, grilla);
       switch(t){
         case 1:
-          var = imgPlat(x,y,a,l,var,r,g,b);
+          var = imgPlat(x,y,a,l,var,r,g,b); //Si es 1, es una plataforma sólida
           break;
         case 3:
-          var = flechas(x,y,a,l,var);
+          var = flechas(x,y,a,l,var); // Si es 3, será una escalera
         break;
         
     }
@@ -35,7 +35,7 @@ class Plataforma{
 }
 
 float flechas(float x, float y, float a, float l, float var){ 
-  //"x", "y" son la posición, "a" el ancho, "l" el largo y var sirve para que se actualice continuamente.
+  //"x", "y" son la posición, "a" el ancho, "l" el largo y "var" sirve para que se actualice continuamente.
   for(int i = 1; i <= l/10; i++){
     if((var+i)%20 == 0){
       fill(0, 255, 255);
@@ -65,11 +65,7 @@ float imgPlat(float x, float y, float a, float l, float var, float r, float g, f
   fill(r, g, b, 200+70*sin(var/25));
   rect(x, y, a, l);
   fill(0);
-  rect(x+a/20, y+l/20, 9*a/10, 9*l/10); 
-  //Borde Izquierdo: 0, 0, 5, 0
-  //Borde Derecho: -5, 0, 5, 0
-  //Intermedio: -5,0,10,0
-  //Normal: 0, 0, 0, 0
+  rect(x+5, y+5, a-10, l-10); 
   var++;
   return var;
 }
