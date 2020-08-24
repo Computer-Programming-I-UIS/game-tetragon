@@ -1,3 +1,28 @@
+float cristal(float x, float y, float s, float ang, float var){
+  noStroke();
+  scale(s);
+  translate(x, y);
+  rotate(ang);
+  fill(#85FF15, 200+70*sin(var/30));
+  beginShape();
+  vertex(0, 0);
+  vertex(15, -30);
+  vertex(30, 0);
+  vertex(40, -10);
+  vertex(30, 20);
+  vertex(40, 10);
+  vertex(30, 40);
+  vertex(0, 40);
+  vertex(-20, 20);
+  vertex(-10, 20);
+  vertex(-15, 10);
+  vertex(-20, -10);
+  vertex(0,0);
+  endShape();
+  var++;
+  return var;
+}
+
 float imgPlat(float x, float y, float a, float l, float var, float r, float g, float b){
   //"x", "y" posición, "a","l" ancho y largo, "var" variable para que se actualice, y "r","g","b" determinan el color
   noStroke();
@@ -92,8 +117,15 @@ float cinematica(float x){
         text("Desde que existo ha estado a mi lado...", 100, height-70);
         break;
       case 4: //estrellas
-        for(int i = 1; i <= 10; i++){
-          
+        for(int i = 0; i <= 10; i++){
+          fill(255, 20+50*sin(t/20));
+          ellipse(150+50*i, 250+75*sin(PI*i/4), 10, 10);
+          fill(255, 20+50*sin(t/20+PI/4));
+          ellipse(150+50*i, 250-75*sin(PI*i/4), 10, 10);
+          fill(255, 20+50*sin(t/20+PI/2));
+          ellipse(150+50*i, 250-75*cos(PI*i/4), 10, 10);
+          fill(255, 20+50*sin(t/20+3*PI/4));
+          ellipse(150+50*i, 250+75*cos(PI*i/4), 10, 10);
         }
         fill(255, t);
         textFont(mono);
@@ -416,5 +448,3 @@ void tetraCine(float x, float y, float s){
   popMatrix();
   tim++;
 }
-
-
