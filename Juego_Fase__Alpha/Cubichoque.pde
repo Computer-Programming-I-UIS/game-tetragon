@@ -9,17 +9,17 @@ class Cubichoque{
   char dir,dir2;
   Cubichoque(){
     cvel = new PVector(0,0); //Velocidad
-    cpos = new PVector(width/2,height/2); //Posicion normal del bichi
+    cpos = new PVector(width/2,height/2); //Posicion normal del personaje
     
     a = 20;
     l = 20;
   }
   
-  void dibujar(){ //Hace todo lol
+  void dibujar(){ //Contiene todo lo que se hace en esta clase
     
     switch(salt){ //Cuando se esta apuntando
       case 0:
-       //Acompañando al jugador, ta rotating todo creisi
+       //Acompañando al jugador
       
         rot++;
         cpos.x += (jpos.x-a-cpos.x)/10;
@@ -55,7 +55,7 @@ class Cubichoque{
         noStroke();
         
         rx = screenX(cpos.x*0.1,cpos.y*0.1);
-        ry = screenY(cpos.x*0.1,cpos.y*0.1); //Dan las coordenadas sin importar hasta donde rotó, pero son giganormes Xd
+        ry = screenY(cpos.x*0.1,cpos.y*0.1); //Dan las coordenadas sin importar hasta donde rotó, como son muy grandes, se multiplican por 0.1
         
         
         rectMode(CENTER);
@@ -114,7 +114,7 @@ class Cubichoque{
     
   }
   void disp(){
-   if(rx < -500 || rx > width+500 || ry > height+500 || ry < -500){salt = 1;} //Si el bichi sale del mapa
+   if(rx < -500 || rx > width+500 || ry > height+500 || ry < -500){salt = 1;} //Si el personaje sale del mapa
     
     switch(salt){
       case 1: //Mientras apunta
@@ -145,10 +145,10 @@ class Cubichoque{
           cvel.x = 0;
           estat = 1;
         }
-        if(estat == 1){ //Cuando termine el movimiento y confirmadisimo que chocó se tpea el jugador
+        if(estat == 1){ //Cuando termine el movimiento y confirmadisimo que chocó se teletransporta el jugador
          jpos.x = (dir == 'l' ? rx+tetra.a/2+5:rx-tetra.a/2-5);
          jpos.y = dir == 'u' ? ry+tetra.l/2:ry-tetra.l/2;
-        
+         Teleport.play(2);
          estat = 0; 
          salt = 0;
         }
