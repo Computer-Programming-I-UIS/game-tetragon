@@ -35,6 +35,7 @@ class Jugador{
       if(salto == 0 && vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) && input[0] == 'f'){  //Si está presionada "f" saltamos
         jvel.y = -6.5;
         salto = 1;
+        Salto.amp(0.1);
         Salto.play(2);
       }if(jvel.x < 4.5 && input[1] == 'd'){ //Si está presionada "d" nos movemos a la derecha
         jvel.x += 0.2;

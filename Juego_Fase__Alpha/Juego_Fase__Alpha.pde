@@ -30,7 +30,8 @@ void draw(){
   
   switch(menu){
     case 1:
-      if(!Level_1.isPlaying()){Level_1.play(1);}
+      if(!Level_1.isPlaying()){Level_1.play(1); Level_1.amp(0.075);}
+      if(MenuSong.isPlaying()){MenuSong.stop();}
       modo = 0; //Volver a cero las variables utilizadas en la cinemática
       t[0] = 0;
       t[1] = 0;
@@ -70,7 +71,7 @@ void draw(){
     case 0:
     case -1:
       background(0);
-      if(!MenuSong.isPlaying()){MenuSong.play(1);}
+      if(!MenuSong.isPlaying()){MenuSong.play(1);MenuSong.amp(0.075);}
       else if(modo != 0){MenuSong.stop();}
       t = menu(t[0], t[1], t[2]);
       if((key == 's'||key == 'S') && menu == -1){menu = -2;aviso = "saltarte el inicio?";}
@@ -100,7 +101,7 @@ void keyReleased(){
 void mousePressed(){
   if(menu == 1)
   switch(cubo.salt){ //Para que cambie el modo 
-    case 0: cubo.salt = 1; Apuntar.play(2);break; //Pasar a apuntar
+    case 0: cubo.salt = 1; Apuntar.amp(0.05);Apuntar.play(2);break; //Pasar a apuntar
     case 1: cubo.salt = 2;break; //Pasar a calcular fuerza
     case 2: cubo.salt = 3;break; //En este momento, se el bloque se encuentra viajando
   }
