@@ -32,9 +32,10 @@ class Jugador{
     }
     //MOVIMIENTO PROVOCADO POR EL USUARIO
     if(cubo.salt == 0 && (vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) || vehit(jpos.x, jpos.y+l+jvel.y, a, l, 3, grilla))){ //Solo cuando el cubo lo acompaña
-      if(salto == 0 && vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) && input[0] == 'f'){  //Si está presionada "." saltamos
+      if(salto == 0 && vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) && input[0] == 'f'){  //Si está presionada "f" saltamos
         jvel.y = -6.5;
         salto = 1;
+        Salto.play(2);
       }if(jvel.x < 4.5 && input[1] == 'd'){ //Si está presionada "d" nos movemos a la derecha
         jvel.x += 0.2;
       }if(jvel.x > -4.5 && input[2] == 'a'){ //Si está presionada "a" nos movemos a la izquierda
@@ -47,7 +48,7 @@ class Jugador{
     if(vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 1, grilla) && jvel.x != 0){
       //Evitar movimiento cerca de paredes
       jvel.x = 0;
-    }if(vehit(jpos.x, jpos.y+jvel.y, a, 0, 1, grilla)){ //Chocar contra un "techo"
+    }if(vehit(jpos.x, jpos.y, a, jvel.y, 1, grilla)){ //Chocar contra un "techo"
       jvel.y = 0;
     }if(vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla)) { //Chocar contra un "piso"
       jvel.y = 0;
@@ -91,7 +92,6 @@ class Jugador{
     scale(s); //Esto indica la escala, usar 0.2 para el juego
     //Brazo Atrás:
     fill(20, 155, 20);
-    
     pushMatrix();
     translate(2.5+pow(lon,2), 140+5*sin(tim/15+1.5));
     rotate(ang);
@@ -121,7 +121,7 @@ class Jugador{
     translate(20, 120+5*sin(tim/15+1));
     rect(0, 0, 60, 100);
     fill(20, 155, 20);
-    if(cubo.salt != 0 || input[1] == 0 && input[2] == 0){
+    if(cubo.salt != 0 || input[1] == 0 && input[2] == 0){ //El cuerpo del robot según la tecla que presione el jugador
       rect(10, 10, 20, 10);
       rect(30, 10, 20, 10);
       for(int i = 1; i <= 4; i++){
@@ -130,6 +130,7 @@ class Jugador{
         }
       }
     }else if(input[2] == 'a' && cubo.salt == 0){
+      //En este else if y en el siguiente se alteran los botones que posee tetra en su torso para dar la ilusión de movimiento
       rect(0,10, 20, 10);
       for(int i = 1; i <= 2; i++){
         for(int j = 1; j <= 4; j++){
@@ -158,12 +159,12 @@ class Jugador{
     //Dinámica de los brazos
     if(input[1] == 'd' && cubo.salt == 0){ 
       ang = PI/3*sin(t);
-      t += 0.05; //Ángulo aumenta y lon es fijado como raiz de 45
+      t += 0.05; //Ángulo aumenta y "lon" es fijado como raiz de 45
       lon = sqrt(45);
     }if(input[2] == 'a' && cubo.salt == 0){
       ang = PI/3*sin(t);
       t += 0.05;
-      lon = -sqrt(45); //Lo mismo que antes solo que lon=-sqrt45, esto para que el ojo mire hacia el otro lado
+      lon = -sqrt(45); //Lo mismo que antes solo que "lon" tiene signo contrario, esto para que el ojo mire hacia el otro lado
     }if(vehit(jpos.x, jpos.y+l, a, 0, 1, grilla) || input[1] == 0 && input[2] == 0){
       ang = 0;
       lon = 0;
