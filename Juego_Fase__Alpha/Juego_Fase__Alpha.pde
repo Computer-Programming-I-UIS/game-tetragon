@@ -71,6 +71,7 @@ void draw(){
     case -1:
       background(0);
       if(!MenuSong.isPlaying()){MenuSong.play(1);}
+      else if(modo != 0){MenuSong.stop();}
       t = menu(t[0], t[1], t[2]);
       if((key == 's'||key == 'S') && menu == -1){menu = -2;aviso = "saltarte el inicio?";}
       break;
