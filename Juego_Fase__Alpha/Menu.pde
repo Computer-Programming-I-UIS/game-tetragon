@@ -7,11 +7,11 @@ float[] menu (float t, float d, float x){
       fill(255);
       if(t%300 == 0){
         t=0;
-        u[0] = int(random(1, 3));
+        u[0] = int(random(1, 3)); //Colores aleatorios que aparecen en el fondo
         u[1] = int(random(1, 3));
         u[2] = int(random(1, 3));
       }
-      fill(2*i*u[0], 20+2*j*u[1], u[2]*(i+j), 3*255/4*sin(PI*t/150));
+      fill(2*i*u[0], 20+2*j*u[1], u[2]*(i+j), 3*255/4*sin(PI*t/150)); //Se van continuamente apagando y volviendo a prender
       rect(i*width/20, j*height/20, 20, 20);
     }
   }
@@ -127,7 +127,9 @@ float[] menu (float t, float d, float x){
   textFont(mono);
   textSize(abs(sin(PI*t/150)*5+15));
   text("PRESIONA ENTER PARA EMPEZAR", width/2, 3*height/5);
-  if(menu == -1){
+  textSize(abs(sin(PI*t/150)*5+10));
+  text("PRESIONA ESCAPE PARA SALIR",  width/2, 3*height/5+50);  
+  if(menu == -1){ //Cinemática
     
     fill(0, 0, 0, d);
     rect(0, 0, width, height);
@@ -137,7 +139,7 @@ float[] menu (float t, float d, float x){
       noStroke();
       textAlign(CENTER);
       
-        switch (modo){
+        switch (modo){ //Cada modo representa una parte de la cinemática inicial
           case 1: 
             tetraCine(width/2-50, height/2-200, 1);
             fill(255, t);
@@ -182,9 +184,9 @@ float[] menu (float t, float d, float x){
             fill(255, t);
             textFont(mono);
             textSize(25);
-            text("Todo el tiempo lo pasamos juntos, es como mi sombra", width/2, height-100);
+            text("Todo el tiempo lo pasamos juntos, es como mi sombra,", width/2, height-100);
             textSize(25);
-            text("Desde que existo ha estado a mi lado...", width/2, height-70);
+            text("desde que existo ha estado a mi lado...", width/2, height-70);
             break;
           case 4: //estrellas
             for(int i = 0; i <= 10; i++){
@@ -200,9 +202,9 @@ float[] menu (float t, float d, float x){
             fill(255, t);
             textFont(mono);
             textSize(20);
-            text("Euclidius es un lugar acogedor, aunque muy monótono y solitario", width/2, height-100);
+            text("Euclidius es un lugar acogedor, aunque muy monótono y solitario;", width/2, height-100);
             textSize(20);
-            text("Es por eso que siempre me he preguntado que habrá más allá...", width/2, height-70);
+            text("es por eso que siempre me he preguntado que habrá más allá...", width/2, height-70);
             break;
     
           case 5:
@@ -224,9 +226,9 @@ float[] menu (float t, float d, float x){
             textSize(20);
             text("Rubik nunca ha pensado en eso, no sé si lo ignora,", width/2, height-100);
             textSize(20);
-            text("Si no me lo dice porque no sabe hablar", width/2, height-75);
+            text("si no me lo dice porque no sabe hablar,", width/2, height-75);
             textSize(20);
-            text("O si simplemente no puede hablar...", width/2, height-50);
+            text("o si simplemente no puede hablar...", width/2, height-50);
             break;
             
           case 6:
@@ -261,7 +263,8 @@ float[] menu (float t, float d, float x){
         fill(255, 100+100*sin(x/500-width/100-PI/2));
         textFont(mono);
         textSize(10);
-        text("Presiona una tecla para continuar", 100, height-30);
+        text("Presiona una tecla para continuar", 100, height-40);
+        text("Presiona S para saltarte la introducción", 100, height-25);
       }
       fill(255);
       if(x >= 2*width){
@@ -280,8 +283,9 @@ float[] menu (float t, float d, float x){
         }
       }
       x += 10;
-      if(modo > 6){
+      if(modo > 6){ //Si modo es 6 la cinemática concluye
       menu = 1;
+      modo = 0;
       }
       
     }
