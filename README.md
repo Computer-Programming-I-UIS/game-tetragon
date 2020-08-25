@@ -29,3 +29,8 @@ Nuestros Protagonistas:
 
 ## **Características**: 
 
+99% de los gráficos hechos en Processing
+
+
+
+
