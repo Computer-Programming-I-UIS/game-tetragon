@@ -18,7 +18,7 @@ void setup(){
   size(750, 600);
   frameRate(60);
   cubo = new Cubichoque();
-  tetra = new Jugador(width/2, height-250, grilla);
+  tetra = new Jugador(width/2, height-100, grilla);
   mono = createFont("Impact", 32); //Fuente utilizada
   Salto = new SoundFile(this, "jump.wav"); //Inicializar los audios
   Teleport = new SoundFile(this, "teleport.wav");
@@ -50,9 +50,15 @@ void draw(){
         break;
         case 1:
         t[0] = cristal(width/2-15, 518, 0.8, 0, t[0]);
+        t[0] = cristal(250-15,125,0.5,3*PI/2,t[0]);
+        t[0] = cristal(30,height/2-10,1,PI/2,t[0]);
+        break;
+        case 2:
+        t[0] = cristal(width/2-20,height/2-30,0.7,0,t[0]);
+        t[0] = cristal(width/2+30,height-80,1,0,t[0]);
         break;
       }
-      println(mouseX + " " + mouseY);
+      
       if(jpos.y < 0){
         crear = 1;
         stage++;
@@ -97,7 +103,7 @@ void draw(){
 
 void keyPressed(){
   tetra.movimiento();
-  if((key == 'r' || key == 'R') && cubo.salt == 2){cubo.salt = 1;}
+  //if((key == 'r' || key == 'R') && cubo.salt == 2){cubo.salt = 1;}
   if(key == ENTER && menu == 0){menu = -1;}
   if((key == ESC)){key = 0;menu = -2; aviso = "salir del juego?";}
 }

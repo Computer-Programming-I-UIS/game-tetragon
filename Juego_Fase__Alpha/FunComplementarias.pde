@@ -1,11 +1,11 @@
 void stages(){
   Plataformas.clear();
   
-  Plataformas.add(new Plataforma( width-20, 0, 20, height-20, 1, grilla,0,80,115));
-  Plataformas.add(new Plataforma( 0, 0, 20, height-20, 1, grilla,0,80,115));
+  Plataformas.add(new Plataforma( width-20, 0, 20, height+5, 1, grilla,0,80,115));
+  Plataformas.add(new Plataforma( 0, 0, 20, height+5, 1, grilla,0,80,115));
   
    //Limites der e izq
-  switch(stage){
+  switch(stage){ 
     case -1:
       stage = 0;
       break;
@@ -21,20 +21,42 @@ void stages(){
       crear = 0;
       break;
       
-    case 1:
+    case 1: //Apenas sube
     
       Plataformas.add(new Plataforma( 250, height-100, 30 , 100 ,3 ,grilla,0,0,0));
       Plataformas.add(new Plataforma( 250 + 40,height-50,100,50,1,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma( width-70,height-200,50,200,1,grilla,30,187,215));
+      Plataformas.add(new Plataforma( width-70,70,50,height-350-20,1,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma( 250,0,width-510,100,1,grilla,30,187,215));
+      Plataformas.add(new Plataforma( 250,100,width-560,90,1,grilla,30,187,215));
+      Plataformas.add(new Plataforma( 250,190,width-510,100,1,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma( width-70,0,50,60,3,grilla,0,0,0));
       crear = 0;
       break;
-    case 2:
-
+    case 2: //Sube parte 2
+      
+      Plataformas.add(new Plataforma( width-70,height-60,50,60,3,grilla,0,0,0));
+      Plataformas.add(new Plataforma( 250,height-50,width-170-250+80,50,1,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma( width-80,height/2+150,60,30,1,grilla,30,187,215));
+      Plataformas.add(new Plataforma( width-80,0,60,height/2+150-100,1,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma( width/2-40,0,50,height/2-100,1,grilla,30,187,215));
+      Plataformas.add(new Plataforma( width/2-40,height/2,50,30,1,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma( 80,150,50,20,1,grilla,30,187,215));
+      Plataformas.add(new Plataforma( 80,0, 50 ,80,1,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma( 20,0,60,152,3,grilla,30,187,215));
       crear = 0;
       break;
   }
 }
 
-int salir(){
+int salir(){ //Mensaje antes de salir
   background(0);
   textFont(mono);
   textSize(25);

@@ -5,12 +5,11 @@ class Cubichoque{
                           Salt = 1 => Apuntando 
                           Salt = 2 => Disparado el cubo
                           Estat es para que solo halla un choque*/
-  float yep = 0;
-  char dir,dir2;
+  float yep = 0;          //Cambia con la fuerza
+  char dir,dir2;          //Direccion del cubo mientras viaja
   Cubichoque(){
     cvel = new PVector(0,0); //Velocidad
-    cpos = new PVector(width/2,height/2); //Posicion normal del personaje
-    
+    cpos = new PVector(width/2,height/2); //Posicion normal del personaje 
     a = 20;
     l = 20;
   }
@@ -28,7 +27,7 @@ class Cubichoque{
         translate(cpos.x, cpos.y);
         rotate(rot/10);
         
-        rx = screenX(cpos.x*0.05,cpos.y*0.05); //Tambien se actualiza acá just in case
+        rx = screenX(cpos.x*0.05,cpos.y*0.05); //Dan la posicion del cubo respecto a la pantalla, no al juego en si
         ry = screenY(cpos.x*0.05,cpos.y*0.05);
         
         rectMode(CENTER);
@@ -54,8 +53,8 @@ class Cubichoque{
         rotate(rot);
         noStroke();
         
-        rx = screenX(cpos.x*0.1,cpos.y*0.1);
-        ry = screenY(cpos.x*0.1,cpos.y*0.1); //Dan las coordenadas sin importar hasta donde rotó, como son muy grandes, se multiplican por 0.1
+        rx = screenX(cpos.x*0.1,cpos.y*0.1); //Aca tambien se calculan xd
+        ry = screenY(cpos.x*0.1,cpos.y*0.1); 
         
         
         rectMode(CENTER);
@@ -74,7 +73,7 @@ class Cubichoque{
         break;
       
       case 2: //Fuerza
-        yep = fza == 10 ? 1 : (fza == 50 ? -1:yep);
+        yep = fza == 10 ? 1 : (fza == 50 ? -1:yep); //Calculo de fuerza, min 10, max 50
         fza+=yep;
 
         rectMode(CORNER);
@@ -114,7 +113,7 @@ class Cubichoque{
     
   }
   void disp(){
-   if(rx < -500 || rx > width+500 || ry > height+500 || ry < -500){salt = 1;} //Si el personaje sale del mapa
+   if(rx < -500 || rx > width+500 || ry > height+500 || ry < -500){salt = 1;} //Si el cubo sale del mapa se reincia el disparo
     
     switch(salt){
       case 1: //Mientras apunta
@@ -132,7 +131,7 @@ class Cubichoque{
         
         break;
     
-      case 3:  
+      case 3:  //Va volando
         dir = cvel.x > 0 ? 'r':'l';
         dir2 = cvel.y > 0 ? 'd':'u';
         cvel.y-=-0.01;     
@@ -140,7 +139,6 @@ class Cubichoque{
         rx+= (fza/5)*cvel.x;
         ry+= (fza/5)*cvel.y;
         if(vehit(rx+(fza/5)*cvel.x,ry+(fza/5)*cvel.y,20,20,1,grilla)){ //Cuando se choca se detiene 
-          
           cvel.y = 0;
           cvel.x = 0;
           estat = 1;

@@ -22,6 +22,8 @@ void genhitbox(float x,float y,float a,float l,float t, float grilla[][]){ //Cam
 
 boolean vehit(float x,float y,float a,float l,float t, float grilla[][]){ 
   boolean check = false;
+  if(x+a < width+100 && x > -100 && y+l < height + 100 && y > -100){
+  
   for(int i = abs(round(x)); i <= abs(round(x+a)); i++){
     for(int j = abs(round(y)); j <= abs(round(y+l)); j++){
       if(grilla[i][j] == t){
@@ -29,6 +31,7 @@ boolean vehit(float x,float y,float a,float l,float t, float grilla[][]){
         break;
       }
     }
+  }
   }
   return check;
 }
