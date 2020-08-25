@@ -28,7 +28,7 @@ void stages(){
       crear = 0;
       break;
     case 2:
-      
+
       crear = 0;
       break;
   }
@@ -53,8 +53,8 @@ int salir(){
 float cristal(float x, float y, float s, float ang, float var){
   pushMatrix();
   noStroke();
-  scale(s);
   translate(x, y);
+  scale(s);
   rotate(ang);
   fill(#85FF15, 200+70*sin(var/30));
   beginShape();
@@ -73,6 +73,6 @@ float cristal(float x, float y, float s, float ang, float var){
   vertex(0,0);
   endShape();
   popMatrix();
-  var++;
+  var += 0.3;
   return var;
 }
