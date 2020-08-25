@@ -12,12 +12,10 @@ void setup(){
 
 void draw(){
   background(0);
-  if(song){
-    
-    song = false;
-  }
+  t = cristal(100, 100, 1, 0, t);
+  /*
   pushMatrix();
-  translate(width/2, x+3*height/2);
+  translate(width/2, -x+3*height/2);
   textFont(mono);
   textSize(15);
   textAlign(CENTER);
@@ -29,9 +27,13 @@ void draw(){
   text("Al usuario TheDweebMan de la anterior plataforma, creador del audio de apuntar usado en el juego", 0, 210);
   text("A Aaron Daniel, youtuber y creador de los remix utilizados en el menú y en el nivel del juego", 0, 270);
   text("Al equipo del videojuego Terraria, que fueron los creadores originales de las 2 anteriores composiciones", 0, 330);
+  text("A Geoffrey Lee creador de la fuente IMPACT, usada en este proyecto", 0, 390);
+  text("A Microsoft, creadores de Paint, única aplicación de edición utilizada además de Processing", 0, 450);
   popMatrix();
-  x--;
+  x++;
+  */
   println( " X: " + x + " Y: "+ mouseY);
+  
 }
 
 void keyPressed(){

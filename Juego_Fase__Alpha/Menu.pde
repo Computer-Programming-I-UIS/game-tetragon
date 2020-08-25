@@ -130,7 +130,6 @@ float[] menu (float t, float d, float x){
   textSize(abs(sin(PI*t/150)*5+10));
   text("PRESIONA ESCAPE PARA SALIR",  width/2, 3*height/5+50);  
   if(menu == -1){ //Cinemática
-    
     fill(0, 0, 0, d);
     rect(0, 0, width, height);
     d += 2;
@@ -256,6 +255,26 @@ float[] menu (float t, float d, float x){
             textSize(20);
             text("¡No solamente hay que vivir la vida, también hay que triunfar en ella!", width/2, height-70);
             break;
+          case 7:
+            tetraCine(width/6, 50, 0.4);
+            flechas(width/6, height/3, 50, 50, t);
+            t--;
+            fill(255, t);
+            textFont(mono);
+            textSize(20);
+            text("Manejas a Tetra con las teclas 'a' y 's'", 3*width/4-100, height/6);
+            text("Si estás sobre las flechas, puedes subir usando la tecla 'w'", 3*width/4-100, height/3+10);
+            image(Modos, 50, height/2+50);
+            textSize(15);
+            textMode(CORNER);
+            text("Con click pasas al modo apuntar", 125, height/2+25);
+            text("Rubik empezará a girar alrededor de ti", 135, height/2+50);
+            text("Presionando de nuevo, saldrá una barra", 300, height-100);
+            text("esta determina la fuerza", 300, height-75);
+            text("Con un 3er click Rubik saldrá volando", width/2+100, height/2+25);
+            text("Cuando él choque", width-85, height-100);
+            text("aparecerás en ese lugar", width-85, height-75);
+            break;
         }
       t += 1;  
       noStroke();
@@ -283,7 +302,7 @@ float[] menu (float t, float d, float x){
         }
       }
       x += 10;
-      if(modo > 6){ //Si modo es 6 la cinemática concluye
+      if(modo > 7){ //Si modo es 6 la cinemática concluye
       menu = 1;
       modo = 0;
       }
@@ -334,7 +353,7 @@ void tetraCine(float x, float y, float s){
   fill(20, 155, 20);
   rect(10, 10, 20, 10);
   rect(30, 10, 20, 10);
-  if(modo != 6){
+  if(modo != 6 && modo != 7){
     for(int i = 1; i <= 4; i++){
       for(int j = 1; j <= 4; j++){
         rect(10*i+1, 30+10*j, 7, 7);
