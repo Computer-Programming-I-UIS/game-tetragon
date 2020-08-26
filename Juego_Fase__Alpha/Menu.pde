@@ -160,11 +160,6 @@ float[] menu (float t, float d, float x, float c){
             text("A tí, por regalarnos tu valioso tiempo", 0, 570);
             popMatrix();
             c++;
-            if(c >= 2.7*height){ //Cuando ya subieron volvemos al menú
-              modo = 0;
-              menu = 0;
-              c = 0;
-            }
             break;
           case 1: 
             tetraCine(width/2-50, height/2-200, 1);
@@ -334,8 +329,14 @@ float[] menu (float t, float d, float x, float c){
       if(modo > 7){ //Si modo es mayor a 7 la cinemática concluye
       menu = 1;
       modo = 0;
+      }if(c >= 2.7*height){ //Cuando ya subieron volvemos al menú
+        modo = 0;
+        menu = 0;
+        c = 0;
+        d = 0;
+        t = 0;
+        x = 0;
       }
-      
     }
   }
   float [] respuesta = {t, d, x, c};
