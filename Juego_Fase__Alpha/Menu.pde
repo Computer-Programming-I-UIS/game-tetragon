@@ -1,5 +1,6 @@
 float[] menu (float t, float d, float x, float c){
   t++;
+  rectMode(CORNER);
   noStroke();
   pushMatrix();
   for(int i = 0; i <= 20; i++){
@@ -158,7 +159,6 @@ float[] menu (float t, float d, float x, float c){
             text("Al equipo de Nexile, creadores de Jump King, principal fuente de inspiración del juego", 0, 450);
             text("A tí, por regalarnos tu valioso tiempo", 0, 570);
             popMatrix();
-            println(c);
             c++;
             if(c >= 2.7*height){ //Cuando ya subieron volvemos al menú
               modo = 0;
@@ -326,7 +326,7 @@ float[] menu (float t, float d, float x, float c){
         if(x <= 5*width){
           rect(0, height/5*i+height/10, x, height/10); //Rectangulos para la transición
           rect(width, height/5*i, -x, height/10);
-        }else if(keyPressed){
+        }else if(keyPressed && modo >= 0){
           x = 0;
         }
       }
