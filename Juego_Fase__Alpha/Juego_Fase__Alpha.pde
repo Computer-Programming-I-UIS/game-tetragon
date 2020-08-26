@@ -34,7 +34,6 @@ void setup(){
 /*_________________________________________________________________________________________________________________________________________*/
 
 void draw(){
-  
   switch(menu){
     case 1:
       if(!Level_1.isPlaying()){Level_1.play(1); Level_1.amp(0.075);}//La canción suena una y otra vez si nos encontramos en el juego
@@ -90,8 +89,10 @@ void draw(){
       break;    
     case 0:
     case -1:
+      lmenu = 0;
       background(0);
       if(!MenuSong.isPlaying()){MenuSong.play(1);MenuSong.amp(0.075);}//La canción suena una y otra vez si nos encontramos en el menú
+      if(Level_1.isPlaying()){Level_1.stop();}
       //else if(modo != 0){MenuSong.stop();}
       t = menu(t[0], t[1], t[2], t[3]); //Función menú
       if((key == 's'||key == 'S') && menu == -1){menu = -2;aviso = "saltarte el inicio?";}
@@ -111,8 +112,15 @@ void keyPressed(){
   tetra.movimiento();
   //if((key == 'r' || key == 'R') && cubo.salt == 2){cubo.salt = 1;}
   if(key == ENTER && menu == 0){menu = -1;} //Pausa
-  if(key == 'c' && menu == 0){menu = -1; modo = -2;} //Activar créditos
-  if((key == ESC)){key = 0;menu = -2; aviso = "salir del juego?";}
+  if(key == 'c' && menu == 0 && t[3] == 0 && modo == 0){menu = -1; modo = -2;} //Activar créditos
+  if((key == ESC)){
+    key = 0;
+    menu = -2; 
+    if(lmenu == 0)
+    aviso = "salir del juego?";
+    else if (lmenu == 1)
+    aviso = "salir al menú?";
+  }
 }
 
 /*_________________________________________________________________________________________________________________________________________*/
