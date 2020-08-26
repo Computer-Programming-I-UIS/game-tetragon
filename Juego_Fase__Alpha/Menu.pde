@@ -1,11 +1,11 @@
-float[] menu (float t, float d, float x){
+float[] menu (float t, float d, float x, float c){
   t++;
   noStroke();
   pushMatrix();
   for(int i = 0; i <= 20; i++){
     for(int j = 0; j <= 20; j ++){
       fill(255);
-      if(t%300 == 0){
+      if(t%300 == 0 && modo == 0){
         t=0;
         u[0] = int(random(1, 3)); //Colores aleatorios que aparecen en el fondo
         u[1] = int(random(1, 3));
@@ -15,9 +15,8 @@ float[] menu (float t, float d, float x){
       rect(i*width/20, j*height/20, 20, 20);
     }
   }
-
-  translate(width/2-275+10*cos(PI*(t)/150), 100);
-  scale(abs(0.04*(sin(PI*t/150)+12)));
+  translate(width/2-275+10*cos(PI*(t)/150), 100); //Generar movimiento en el título
+  scale(abs(0.04*(sin(PI*t/150)+12))); 
   //T
   fill(0, 255, 0);
   beginShape();
@@ -125,10 +124,12 @@ float[] menu (float t, float d, float x){
   fill(160, 255, 160);
   textAlign(CENTER);
   textFont(mono);
-  textSize(abs(sin(PI*t/150)*5+15));
+  textSize(abs(sin(PI*t/150)*5+15)); //El texto también se mueve
   text("PRESIONA ENTER PARA EMPEZAR", width/2, 3*height/5);
+  textSize(abs(sin(PI*t/150)*5+12.5));
+  text("PRESIONA C PARA LOS CRÉDITOS",  width/2, 3*height/5+50); 
   textSize(abs(sin(PI*t/150)*5+10));
-  text("PRESIONA ESCAPE PARA SALIR",  width/2, 3*height/5+50);  
+  text("PRESIONA ESCAPE PARA SALIR",  width/2, 3*height/5+100);  
   if(menu == -1){ //Cinemática
     fill(0, 0, 0, d);
     rect(0, 0, width, height);
@@ -137,8 +138,34 @@ float[] menu (float t, float d, float x){
       background(0);
       noStroke();
       textAlign(CENTER);
-      
         switch (modo){ //Cada modo representa una parte de la cinemática inicial
+          case -1: //Excepto en modo = -1. Estos son los créditos
+            pushMatrix();
+            fill(255);
+            translate(width/2, -c+3*height/2);
+            textFont(mono);
+            textSize(15);
+            textAlign(CENTER);
+            text("Tetragon", 0, -2*height/5);
+            text("Créditos", 0, -height/8);
+            text("A freeSound.org por su plataforma para descargar fácilmente variedad de sonidos", 0, 30);
+            text("Al usuario sharesynth de la anterior plataforma, creador del audio de salto usado en el juego ", 0, 90);
+            text("Al usuario Sergenious de la anterior plataforma, creador del audio de teletransportación usado en el juego", 0, 150);
+            text("Al usuario TheDweebMan de la anterior plataforma, creador del audio de apuntar usado en el juego", 0, 210);
+            text("A Aaron Daniel, youtuber y creador de los remix utilizados en el menú y en el nivel del juego", 0, 270);
+            text("A Relogic, equipo desarrolador del videojuego Terraria, que fueron los creadores originales de 2 canciones del juego", 0, 330);
+            text("A Geoffrey Lee creador de la fuente IMPACT, usada en este proyecto", 0, 390);
+            text("Al equipo de Nexile, creadores de Jump King, principal fuente de inspiración del juego", 0, 450);
+            text("A tí, por regalarnos tu valioso tiempo", 0, 570);
+            popMatrix();
+            println(c);
+            c++;
+            if(c >= 2.7*height){ //Cuando ya subieron volvemos al menú
+              modo = 0;
+              menu = 0;
+              c = 0;
+            }
+            break;
           case 1: 
             tetraCine(width/2-50, height/2-200, 1);
             fill(255, t);
@@ -258,12 +285,12 @@ float[] menu (float t, float d, float x){
           case 7:
             tetraCine(width/6, 50, 0.4);
             flechas(width/6, height/3, 50, 50, t);
-            t--;
             fill(255, t);
             textFont(mono);
             textSize(20);
-            text("Manejas a Tetra con las teclas 'a' y 's'", 3*width/4-100, height/6);
-            text("Si estás sobre las flechas, puedes subir usando la tecla 'w'", 3*width/4-100, height/3+10);
+            text("Manejas a Tetra con las teclas 'A' y 'S'", 3*width/4-100, height/6);
+            text("Saltas con 'F''", 3*width/4-100, height/6+25);
+            text("Si estás sobre las flechas, puedes subir usando la tecla 'W'", 3*width/4-100, height/3+10);
             image(Modos, 50, height/2+50);
             textSize(15);
             textMode(CORNER);
@@ -276,44 +303,46 @@ float[] menu (float t, float d, float x){
             text("aparecerás en ese lugar", width-85, height-75);
             break;
         }
-      t += 1;  
+
       noStroke();
-      if(modo != 0 && (x >= 5*width || x <= 500)){
+      if(modo != 0 && (x >= 5*width || x <= 500)){ 
         fill(255, 100+100*sin(x/500-width/100-PI/2));
         textFont(mono);
         textSize(10);
-        text("Presiona una tecla para continuar", 100, height-40);
-        text("Presiona S para saltarte la introducción", 100, height-25);
+        if(modo != -1){
+          text("Presiona una tecla para continuar", 100, height-40); //Aviso para adelantar cinemática
+          text("Presiona S para saltarte la introducción", 100, height-25);
+        }
       }
       fill(255);
       if(x >= 2*width){
         fill(255, 255-0.2*(x-2*width));
-        if(x == 2*width){
+        if(x == 2*width){ //Cambiar modo al terminar transición 
           modo++;
           t = 0;
         }
       }
       for(int i = 0; i <= height/20; i++){
         if(x <= 5*width){
-          rect(0, height/5*i+height/10, x, height/10);
+          rect(0, height/5*i+height/10, x, height/10); //Rectangulos para la transición
           rect(width, height/5*i, -x, height/10);
         }else if(keyPressed){
           x = 0;
         }
       }
       x += 10;
-      if(modo > 7){ //Si modo es 6 la cinemática concluye
+      if(modo > 7){ //Si modo es mayor a 7 la cinemática concluye
       menu = 1;
       modo = 0;
       }
       
     }
   }
-  float [] respuesta = {t, d, x};
+  float [] respuesta = {t, d, x, c};
   return respuesta;
 }
 
-
+/*_________________________________________________________________________________________________________________________________________*/
 
 void tetraCine(float x, float y, float s){ 
   rectMode(CORNER);
@@ -353,13 +382,13 @@ void tetraCine(float x, float y, float s){
   fill(20, 155, 20);
   rect(10, 10, 20, 10);
   rect(30, 10, 20, 10);
-  if(modo != 6 && modo != 7){
+  if(modo != 6 && modo != 7){ //Tetra moviendose
     for(int i = 1; i <= 4; i++){
       for(int j = 1; j <= 4; j++){
         rect(10*i+1, 30+10*j, 7, 7);
       }
     }
-  }else{
+  }else{ //Tetra estático
     ang = PI/3*sin(tim/20);
     lon = sqrt(45);
     rect(40,10, 20, 10);
