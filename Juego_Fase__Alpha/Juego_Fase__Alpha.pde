@@ -95,7 +95,7 @@ void draw(){
       if(Level_1.isPlaying()){Level_1.stop();}
       //else if(modo != 0){MenuSong.stop();}
       t = menu(t[0], t[1], t[2], t[3]); //Función menú
-      if((key == 's'||key == 'S') && menu == -1){menu = -2;aviso = "saltarte el inicio?";}
+      if((key == 's'||key == 'S') && menu == -1 && modo >= 0){menu = -2;aviso = "saltarte el inicio?";}
       break;
     case -2:
       menu = salir();  
