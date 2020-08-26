@@ -3,6 +3,7 @@ int modo = 0;
 boolean song = true;
 float input[] = new float[4];
 float[] u = new float[3];
+float[][] r = new float[10][2];
 PFont mono;
 
 void setup(){
@@ -12,26 +13,16 @@ void setup(){
 
 void draw(){
   background(0);
-  t = cristal(100, 100, 1, 0, t);
-  /*
-  pushMatrix();
-  translate(width/2, -x+3*height/2);
-  textFont(mono);
-  textSize(15);
-  textAlign(CENTER);
-  text("Tetragon", 0, -2*height/5);
-  text("Créditos", 0, -height/8);
-  text("A freeSound.org por su plataforma para descargar fácilmente variedad de sonidos", 0, 30);
-  text("Al usuario sharesynth de la anterior plataforma, creador del audio de salto usado en el juego ", 0, 90);
-  text("Al usuario Sergenious de la anterior plataforma, creador del audio de teletransportación usado en el juego", 0, 150);
-  text("Al usuario TheDweebMan de la anterior plataforma, creador del audio de apuntar usado en el juego", 0, 210);
-  text("A Aaron Daniel, youtuber y creador de los remix utilizados en el menú y en el nivel del juego", 0, 270);
-  text("Al equipo del videojuego Terraria, que fueron los creadores originales de las 2 anteriores composiciones", 0, 330);
-  text("A Geoffrey Lee creador de la fuente IMPACT, usada en este proyecto", 0, 390);
-  text("A Microsoft, creadores de Paint, única aplicación de edición utilizada además de Processing", 0, 450);
-  popMatrix();
-  x++;
-  */
+  noStroke();
+  for(int i = 0; i <= 9; i++){
+    fill(255, abs(200*sin(PI*t/100)));
+    if(t%100 == 0){
+      r[i][0] = random(i*width/10, (i+1)*width/10);
+      r[i][1] = random(20, height-20);
+    }
+    ellipse(r[i][0], r[i][1], 10, 10);
+  }
+  t++;
   println( " X: " + x + " Y: "+ mouseY);
   
 }
