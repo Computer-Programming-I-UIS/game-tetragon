@@ -14,7 +14,9 @@ class Cubichoque{
     l = 20;
   }
   
-  void dibujar(){ //Contiene todo lo que se hace en esta clase
+  /*_________________________________________________________________________________________________________________________________________*/
+  
+  void dibujar(){ //
     
     switch(salt){ //Cuando se esta apuntando
       case 0:
@@ -53,7 +55,7 @@ class Cubichoque{
         rotate(rot);
         noStroke();
         
-        rx = screenX(cpos.x*0.1,cpos.y*0.1); //Aca tambien se calculan xd
+        rx = screenX(cpos.x*0.1,cpos.y*0.1); //Aca tambien se calculan 
         ry = screenY(cpos.x*0.1,cpos.y*0.1); 
         
         
@@ -112,6 +114,9 @@ class Cubichoque{
     }
     
   }
+  
+  /*_________________________________________________________________________________________________________________________________________*/
+  
   void disp(){
    if(rx < -500 || rx > width+500 || ry > height+500 || ry < -500){salt = 1;} //Si el cubo sale del mapa se reincia el disparo
     
@@ -127,7 +132,7 @@ class Cubichoque{
         cvel.y = sin(ang);
         dir = cvel.x > 0 ? 'r':'l';
         dir2 = cvel.y > 0 ? 'd':'u';
-        cvel.div(cvel.mag()); //Vector unitario por si acaso algo maluco pasa :u
+        cvel.div(cvel.mag()); //Vector unitario para evitar algún problema
         
         break;
     

@@ -14,6 +14,8 @@ class Jugador{
     grilla = tempgrilla;
   }
   
+  /*_________________________________________________________________________________________________________________________________________*/
+  
   void posicion() {
 
     //MOVIMIENTO PROVOCADO AL NO PRESIONAR TECLAS
@@ -63,6 +65,8 @@ class Jugador{
     
   }
   
+  /*_________________________________________________________________________________________________________________________________________*/
+  
   void movimiento() { //Indicar que una tecla fue presionada
     if(key == 'f' || key == 'F'){
       input[0] = 'f';
@@ -74,6 +78,9 @@ class Jugador{
       input[3] = 'w';
     }
   }
+  
+  /*_________________________________________________________________________________________________________________________________________*/
+  
   void estatico() { //Indicar que una tecla fue dejada de ser presionada
     if(key == 'f' || key == 'F'){
       input[0] = 0;
@@ -86,6 +93,8 @@ class Jugador{
     }
     
   }
+  
+  /*_________________________________________________________________________________________________________________________________________*/
   
   void tetra(float x, float y, float s){ 
     pushMatrix();
@@ -173,9 +182,11 @@ class Jugador{
     tim++;
   }  
   
+  /*_________________________________________________________________________________________________________________________________________*/
+  
   void sprite() {
     fill(255, 0, 0);
-    tetra(jpos.x, jpos.y, 0.2);
+    tetra(jpos.x, jpos.y, 0.2); //El tercer parámetro es 0.2 para que el tamaño sea el indicado para jugar
     fill(-1);
     genhitbox(jpos.x, jpos.y, a, l, 2, grilla);
   }
