@@ -22,6 +22,12 @@ Recomendado para toda la familia/ Para personas de más de 7 años
 
 ![./Media_Readme/Clasificacion.png](./Media_Readme/Clasificacion.png)
 
+#### Requisitos:
+
+- Librería processing.sound
+
+- Fuente IMPACT instalada en el computador (Opcional)
+
 ## **Galería**: 
 
 Nuestros Protagonistas, de izquierda a derecha vemos a Rubik y a Tetra:
