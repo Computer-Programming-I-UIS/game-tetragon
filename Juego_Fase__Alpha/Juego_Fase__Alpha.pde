@@ -4,15 +4,18 @@ Cubichoque cubo;
 ArrayList<Plataforma> Plataformas = new ArrayList<Plataforma>(); //Arraylist de plataformas a utilzar en cada fase
 float grilla[][] = new float[1250][1250]; //Grilla que representa el hitbox
 float a = 10, l = 10, tim, ang, lon;
-float[] t = new float[3];
-float[] u = new float[3];
+float[] t = new float[4]; //Variables cambiantes del menú
+float[] u = new float[3]; //Colores aleatorios del menú
+float[][] r = new float[10][2]; //Array de las luces de la función lucesFondo
 PVector jpos,jvel,cvel,jpos2;
 int stage = 0,crear = 1,menu = 0,lmenu = 0, modo = 0;
 PFont mono;
 String aviso = " ";
-PImage Modos;
+PImage Modos; //Imagen de guía de controles
 SoundFile Salto, Teleport, Apuntar, Level_1, MenuSong;
 Plataforma plat1;
+
+/*_________________________________________________________________________________________________________________________________________*/
 
 void setup(){ 
   size(750, 600);
@@ -28,12 +31,14 @@ void setup(){
   Modos = loadImage("Modos.png");
 }
 
+/*_________________________________________________________________________________________________________________________________________*/
+
 void draw(){
   
   switch(menu){
     case 1:
-      if(!Level_1.isPlaying()){Level_1.play(1); Level_1.amp(0.075);}
-      if(MenuSong.isPlaying()){MenuSong.stop();}
+      if(!Level_1.isPlaying()){Level_1.play(1); Level_1.amp(0.075);}//La canción suena una y otra vez si nos encontramos en el juego
+      if(MenuSong.isPlaying()){MenuSong.stop();} //Si pasamos al juego, la canción del menú termina
       lmenu = menu;
       if(crear == 1){
         stages();
@@ -41,15 +46,16 @@ void draw(){
       rectMode(CORNER);
       noStroke();
       background(0);
-      gengrilla(grilla);
-      switch (stage){
+      gengrilla(grilla); //Generar la grilla
+      t[1] = lucesFondo(t[1]); 
+      switch (stage){ //Decoración
         case 0:
         t[0] = cristal(120, 290, 1, 0, t[0]);
         t[0] = cristal(width/2+20, height-49, 0.7, 0, t[0]);
         t[0] = cristal(width-40, 100, 0.5, 3*PI/2, t[0]);
         break;
         case 1:
-        t[0] = cristal(width/2-15, 518, 0.8, 0, t[0]);
+        t[0] = cristal(width/2-15, 418, 0.8, 0, t[0]);
         t[0] = cristal(250-15,125,0.5,3*PI/2,t[0]);
         t[0] = cristal(30,height/2-10,1,PI/2,t[0]);
         break;
@@ -59,7 +65,7 @@ void draw(){
         break;
       }
       
-      if(jpos.y < 0){
+      if(jpos.y < 0){ //Si se sale de la pantalla, cambiará la stage
         crear = 1;
         stage++;
         stages();
@@ -76,7 +82,7 @@ void draw(){
         plat1 = Plataformas.get(i);
         plat1.sprite();
       }
-      tetra.sprite();
+      tetra.sprite(); 
       tetra.posicion();
       cubo.dibujar();
       cubo.disp();
@@ -85,9 +91,9 @@ void draw(){
     case 0:
     case -1:
       background(0);
-      if(!MenuSong.isPlaying()){MenuSong.play(1);MenuSong.amp(0.075);}
-      else if(modo != 0){MenuSong.stop();}
-      t = menu(t[0], t[1], t[2]);
+      if(!MenuSong.isPlaying()){MenuSong.play(1);MenuSong.amp(0.075);}//La canción suena una y otra vez si nos encontramos en el menú
+      //else if(modo != 0){MenuSong.stop();}
+      t = menu(t[0], t[1], t[2], t[3]); //Función menú
       if((key == 's'||key == 'S') && menu == -1){menu = -2;aviso = "saltarte el inicio?";}
       break;
     case -2:
@@ -97,20 +103,25 @@ void draw(){
       exit();
       break;
   }
- 
-
 }
+
+/*_________________________________________________________________________________________________________________________________________*/
 
 void keyPressed(){
   tetra.movimiento();
   //if((key == 'r' || key == 'R') && cubo.salt == 2){cubo.salt = 1;}
-  if(key == ENTER && menu == 0){menu = -1;}
+  if(key == ENTER && menu == 0){menu = -1;} //Pausa
+  if(key == 'c' && menu == 0){menu = -1; modo = -2;} //Activar créditos
   if((key == ESC)){key = 0;menu = -2; aviso = "salir del juego?";}
 }
+
+/*_________________________________________________________________________________________________________________________________________*/
 
 void keyReleased(){
   tetra.estatico();
 }
+
+/*_________________________________________________________________________________________________________________________________________*/
 
 void mousePressed(){
   if(menu == 1)
