@@ -80,14 +80,12 @@ int salir(){ //Mensaje antes de salir
       }
     }
     else if(key == 'n' || key == 'N'){
-      if(modo <= 0 && lmenu == 0 && t[2] == 0 && t[1] == 0)
+      if(modo <= 0 && t[2] <= 0 && t[1] <= 0 && lmenu == 0)
       return 0;
       else if((modo > 0 || t[2] > 0 || t[1] > 0) && lmenu == 0)
       return -1;
       else if(lmenu == 1)
       return 1;
-      else
-      return -1;
     }
   return -2;
 }
