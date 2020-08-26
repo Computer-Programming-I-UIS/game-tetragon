@@ -67,10 +67,27 @@ int salir(){ //Mensaje antes de salir
   text("Seguro que deseas " + aviso,width/2,height/2);
   text("(Y)/(N)",width/2,height/2 + 100);
     if(key == 'y' || key == 'Y'){
-      return aviso.equals("salir del juego?") ? -3:1;
+        t[0] = 0;
+        t[1] = 0;
+        t[2] = 0;
+        t[3] = 0;
+        modo = 0;
+        key = 0;
+      if(lmenu == 0){
+        return aviso.equals("salir del juego?") ? -3:1;
+      }else if(lmenu == 1){
+        return aviso.equals("salir del juego?") ? -3:0;
+      }
     }
     else if(key == 'n' || key == 'N'){
-      return aviso.equals("salir del juego?") ? lmenu:-1;
+      if(modo <= 0 && lmenu == 0 && t[2] == 0 && t[1] == 0)
+      return 0;
+      else if((modo > 0 || t[2] > 0 || t[1] > 0) && lmenu == 0)
+      return -1;
+      else if(lmenu == 1)
+      return 1;
+      else
+      return -1;
     }
   return -2;
 }
