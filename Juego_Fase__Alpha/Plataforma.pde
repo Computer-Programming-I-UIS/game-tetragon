@@ -15,7 +15,7 @@ class Plataforma{
     l = largo;
     t = tipo;
     grilla = tempgrilla;
-    r = tr; g = tg; b = tb;
+    r = tr; g = tg; b = tb; //Colores
   }
   
   void sprite() {
@@ -33,6 +33,8 @@ class Plataforma{
       
   }
 }
+
+/*_________________________________________________________________________________________________________________________________________*/
 
 float flechas(float x, float y, float a, float l, float var){ 
   //"x", "y" son la posición, "a" el ancho, "l" el largo y "var" sirve para que se actualice continuamente.
@@ -57,6 +59,8 @@ float flechas(float x, float y, float a, float l, float var){
   var++;
   return var;
 }
+
+/*_________________________________________________________________________________________________________________________________________*/
 
 float imgPlat(float x, float y, float a, float l, float var, float r, float g, float b){
   //"x", "y" posición, "a","l" ancho y largo, "var" variable para que se actualice, y "r","g","b" determinan el color
