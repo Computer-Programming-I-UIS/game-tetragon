@@ -1,4 +1,5 @@
-void stages(){
+//Funciones variadas necesarias para diferentes momentos en el juego
+void stages(){ //Función que determina las plataformas de cada nivel
   Plataformas.clear();
   
   Plataformas.add(new Plataforma( width-20, 0, 20, height+5, 1, grilla,0,80,115));
@@ -23,8 +24,8 @@ void stages(){
       
     case 1: //Apenas sube
     
-      Plataformas.add(new Plataforma( 250, height-100, 30 , 100 ,3 ,grilla,0,0,0));
-      Plataformas.add(new Plataforma( 250 + 40,height-50,100,50,1,grilla,30,187,215));
+      Plataformas.add(new Plataforma( 250, height-200, 30 , 200 ,3 ,grilla,0,0,0));
+      Plataformas.add(new Plataforma( 250 + 40,height-150,100,50,1,grilla,30,187,215));
       
       Plataformas.add(new Plataforma( width-70,height-200,50,200,1,grilla,30,187,215));
       Plataformas.add(new Plataforma( width-70,70,50,height-350-20,1,grilla,30,187,215));
@@ -56,6 +57,8 @@ void stages(){
   }
 }
 
+/*_________________________________________________________________________________________________________________________________________*/
+
 int salir(){ //Mensaje antes de salir
   background(0);
   textFont(mono);
@@ -72,7 +75,9 @@ int salir(){ //Mensaje antes de salir
   return -2;
 }
 
-float cristal(float x, float y, float s, float ang, float var){
+/*_________________________________________________________________________________________________________________________________________*/
+
+float cristal(float x, float y, float s, float ang, float var){ //Cristal para decoración
   pushMatrix();
   noStroke();
   translate(x, y);
@@ -97,4 +102,20 @@ float cristal(float x, float y, float s, float ang, float var){
   popMatrix();
   var += 0.3;
   return var;
+}
+
+/*_________________________________________________________________________________________________________________________________________*/
+
+float lucesFondo(float t){ //Función que genera unos puntos con posición aleatoria en el fondo
+  noStroke();
+  for(int i = 0; i <= 9; i++){
+    fill(255, abs(200*sin(PI*t/100)));
+    if(t%100 == 0){
+      r[i][0] = random(i*width/10, (i+1)*width/10);
+      r[i][1] = random(50, height-50);
+    }
+    ellipse(r[i][0], r[i][1], 10, 10);
+  }
+  t++;
+  return t;
 }
