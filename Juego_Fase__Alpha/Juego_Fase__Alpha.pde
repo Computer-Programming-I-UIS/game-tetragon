@@ -21,7 +21,7 @@ void setup(){
   size(750, 600);
   frameRate(60);
   cubo = new Cubichoque();
-  tetra = new Jugador(width-50, height-50, grilla);
+  tetra = new Jugador(width-55, height-50, grilla);
   mono = createFont("Impact", 32); //Fuente utilizada
   /*Salto = new SoundFile(this, "jump.wav"); //Inicializar los audios
   Teleport = new SoundFile(this, "teleport.wav");
@@ -86,7 +86,7 @@ void draw(){
       cubo.dibujar();
       cubo.disp();
       
-
+      text(frameRate,width/2,height-50);
       break;    
     case 0:
     case -1:
@@ -111,7 +111,7 @@ void draw(){
 
 void keyPressed(){
   tetra.movimiento();
-  if((key == 'r' || key == 'R') && cubo.salt == 2){cubo.salt = 1;}
+  if((key == 'r' || key == 'R') && cubo.salt != 0){cubo.salt--;}
   if(key == ENTER && menu == 0){menu = -1;} //Pausa
   if(key == 'c' && menu == 0 && t[3] == 0 && modo == 0){menu = -1; modo = -2;} //Activar créditos
   if((key == ESC)){

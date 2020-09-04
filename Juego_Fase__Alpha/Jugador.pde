@@ -65,12 +65,10 @@ class Jugador{
     else{
       ang = -10*PI/9;
     }
-    if(vehit(jpos.x,jpos.y+l+jvel.y,a,0,4,grilla)){
-       
+    if(vehit(jpos.x,jpos.y+l+jvel.y,2*a,0,4,grilla)){ //vehit(jpos.x+a,jpos.y+l+jvel.y,a,0,4,grilla)){
        jvel.x-=2;
     }
-    if(vehit(jpos.x,jpos.y+l+jvel.y,a,0,5,grilla)){
-      
+    if(vehit(jpos.x,jpos.y+l+jvel.y,2*a,0,5,grilla)){ 
       jvel.x+=2;
     }
     //MODIFICAR LA POSICIÓN SEGÚN LA VELOCIDAD

@@ -91,7 +91,7 @@ float imgRamp(float x, float y, float a, float l, float var, float r, float g, f
   if(t == 4){
     triangle(x,y+l,x+a,y+l,x+a,y);
   }
-  if(t == 5){
+  else{
     triangle(x,y,x,y+l,x+a,y+l);
   }
   var++;

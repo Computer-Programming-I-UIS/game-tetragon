@@ -11,15 +11,10 @@ void gengrilla(float grilla[][]){ //Generar la grilla
 
 void genhitbox(float x,float y,float a,float l,int t, float grilla[][]){ //Cambiar el valor de la grilla a algún valor en específico según la naturaleza del objeto
   if(x+a < width+100 && x > -100 && y+l < height + 100 && y > -100){
-    
     for(int i = abs(round(x)); i <= abs(round(x+a)); i++){
       for(int j = abs(round(y)); j <= abs(round(y+l)); j++){
-        if(hitboxtriang(x,y,i,j,a,l,t)){   
-          grilla[i][j] = t;
-        }
-        else{
-          grilla[i][j] = t;
-        }
+        if(t == 4 || t == 5){}
+        else{grilla[i][j] = t;}
         //Determinar valor de la grilla en esa zona
         // t = 0 => Espacio vacío
         // t = 1 => Pared
@@ -51,7 +46,7 @@ boolean vehit(float x,float y,float a,float l,float t, float grilla[][]){ //Veri
   return check;
 }
 
-boolean hitboxtriang(float x,float y,int i,int j,float an, float l, int t){
+/*boolean hitboxtriang(float x,float y,int i,int j,float an, float l, int t){
    PVector c = new PVector(x,y+l);
    PVector d = new PVector(x+an,y+l);
    PVector e = new PVector(x+an,y);
@@ -76,4 +71,4 @@ boolean hitboxtriang(float x,float y,int i,int j,float an, float l, int t){
    
    if(area1+area2+area3-areat == 0){return true;}
    return false;
-}
+}*/
