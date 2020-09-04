@@ -213,12 +213,16 @@ float cinematica(float x){
   return x;
 }
 
-void fuego(){
-  for(int i = 1; i <= 20; i++){
-    float u = random(-1, 1);
-    fill(255, 200, 0, 255-255/50*i);
-    ellipse(width/2, height/2, i*i+u, i*i+u);
+float alma(float x, float y,float var){
+  fill(#6E039D, 150+50*cos(var/10));
+  noStroke();
+  ellipse(x, y, 8+2*cos(var/10), 8+2*cos(var/10));
+  for(int i = 1; i <= 15; i++){
+    ellipse(x+10*cos(var/10-i/10.5), y+10*sin(var/10-i/10.5), 8-i/4+2*cos(var/10-i/10.5), 8-i/5+2*cos(var/10-i/10.5));
+    ellipse(x-10*cos(var/10-i/10.5), y-10*sin(var/10-i/10.5), 8-i/4+2*cos(var/10-i/10.5), 8-i/5+2*cos(var/10-i/10.5));
   }
+  var++;
+  return var;
 }
 /*
 float lightOn(float u, float c){

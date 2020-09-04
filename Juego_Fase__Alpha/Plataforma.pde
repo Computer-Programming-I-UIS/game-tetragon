@@ -90,9 +90,13 @@ float imgRamp(float x, float y, float a, float l, float var, float r, float g, f
   fill(r, g, b, 200+70*sin(var/25));
   if(t == 4){
     triangle(x,y+l,x+a,y+l,x+a,y);
+    fill(0);
+    triangle(x+5,y+l,x+a,y+l,x+a,y+5);
   }
   else{
-    triangle(x,y,x,y+l,x+a,y+l);
+    triangle(x, y, x, y+l, x+a, y+l);
+    fill(0);
+    triangle(x, y+5, x, y+l, x+a-5, y+l);
   }
   var++;
   return var;

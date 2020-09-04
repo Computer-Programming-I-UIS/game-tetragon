@@ -66,10 +66,16 @@ class Cubichoque{
         fill(25, 175 ,200);
         translate(cpos.x*0.1,cpos.y*0.1);
         rotate(PI/4);
-        rect(0, 0,20,20);
+        rect(0, 0,a,a);
         popMatrix();
+        if(vehit(rx, ry, 1, 1,1,grilla))
+        fill(50, 50, 150);
+        else
         fill(25, 25 ,200);
         rect(cpos.x*0.1,cpos.y*0.1,a,a);
+        if(vehit(rx, ry, 1, 1,1,grilla))
+        fill(#FA1E7E);
+        else
         fill(250, 250, 0);
         rect(cpos.x*0.1,cpos.y*0.1,a/4,a/4);
         popMatrix();
@@ -81,7 +87,7 @@ class Cubichoque{
         
         for(int i = 1; i <= width; i++){
           if(!vehit(rx+i*(fza/5)*cvel.x, ry+i*(fza/5)*cvel.y+0.01*fza/10*pow(i, 2), 1, 1,1,grilla))
-          ellipse(rx+i*(fza/5)*cvel.x, ry+i*(fza/5)*cvel.y+0.01*fza/10*pow(i, 2), a/10, a/10);
+          ellipse(rx+i*(fza/5)*cvel.x, ry+i*(fza/5)*cvel.y+0.01*fza/10*pow(i, 2), a/10, l/10);
           else
           break;
         }

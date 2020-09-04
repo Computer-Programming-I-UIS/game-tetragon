@@ -86,6 +86,7 @@ void draw(){
       cubo.dibujar();
       cubo.disp();
       
+      fill(255);
       text(frameRate,width/2,height-50);
       break;    
     case 0:
