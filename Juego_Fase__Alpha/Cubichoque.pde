@@ -78,6 +78,13 @@ class Cubichoque{
       case 2: //Fuerza
         yep = fza == 10 ? 1 : (fza == 50 ? -1:yep); //Calculo de fuerza, min 10, max 50
         fza+=yep;
+        
+        for(int i = 1; i <= width; i++){
+          if(!vehit(rx+i*(fza/5)*cvel.x, ry+i*(fza/5)*cvel.y+0.01*fza/10*pow(i, 2), 1, 1,1,grilla))
+          ellipse(rx+i*(fza/5)*cvel.x, ry+i*(fza/5)*cvel.y+0.01*fza/10*pow(i, 2), a/10, a/10);
+          else
+          break;
+        }
 
         rectMode(CORNER);
         fill(200);
