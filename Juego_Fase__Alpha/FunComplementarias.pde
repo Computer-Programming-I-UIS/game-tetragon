@@ -40,7 +40,7 @@ void stages(){ //Función que determina las plataformas de cada nivel
     case 2: //Sube parte 2
       
       Plataformas.add(new Plataforma( width-70,height-60,50,60,3,grilla,0,0,0));
-      Plataformas.add(new Plataforma( 250,height-50,width-170-250+80,50,1,grilla,30,187,215));
+      Plataformas.add(new Plataforma( 450,height-50,200,50,1,grilla,30,187,215));
       
       Plataformas.add(new Plataforma( width-80,height/2+150,60,30,1,grilla,30,187,215));
       Plataformas.add(new Plataforma( width-80,0,60,height/2+150-100,1,grilla,30,187,215));
@@ -52,7 +52,15 @@ void stages(){ //Función que determina las plataformas de cada nivel
       Plataformas.add(new Plataforma( 80,0, 50 ,80,1,grilla,30,187,215));
       
       Plataformas.add(new Plataforma( 20,0,60,152,3,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma( 360,height-50,90,60,4,grilla,30,187,215));
       crear = 0;
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
       break;
   }
 }

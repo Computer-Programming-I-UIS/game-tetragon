@@ -7,6 +7,7 @@ class Plataforma{
   float grilla[][];
   PImage sprite;
   float r,g,b;
+  PVector d,c,e;
   
   Plataforma(float posX, float posY, int ancho, int largo, int tipo, float tempgrilla[][],float tr,float tg, float tb){
     x = posX;
@@ -19,8 +20,9 @@ class Plataforma{
   }
   
   void sprite() {
-    
-    genhitbox(x, y, a, l, t, grilla);
+      
+      genhitbox(x, y, a, l, t, grilla);
+      
       switch(t){
         case 1:
           var = imgPlat(x,y,a,l,var,r,g,b); //Si es 1, es una plataforma sólida
@@ -28,10 +30,17 @@ class Plataforma{
         case 3:
           var = flechas(x,y,a,l,var); // Si es 3, será una escalera
         break;
+        case 4:
+          var = imgRamp(x,y,a,l,var,r,g,b,4);
+        break;
+        case 5:
+          var = imgRamp(x,y,a,l,var,r,g,b,5);
+          break;
         
     }
       
   }
+
 }
 
 /*_________________________________________________________________________________________________________________________________________*/
@@ -70,6 +79,21 @@ float imgPlat(float x, float y, float a, float l, float var, float r, float g, f
   rect(x, y, a, l);
   fill(0);
   rect(x+5, y+5, a-10, l-10); 
+  var++;
+  return var;
+}
+
+float imgRamp(float x, float y, float a, float l, float var, float r, float g, float b,int t){
+  //"x", "y" posición, "a","l" ancho y largo, "var" variable para que se actualice, y "r","g","b" determinan el color
+  noStroke();
+  rectMode(CORNER);
+  fill(r, g, b, 200+70*sin(var/25));
+  if(t == 4){
+    triangle(x,y+l,x+a,y+l,x+a,y);
+  }
+  if(t == 5){
+    triangle(x,y,x,y+l,x+a,y+l);
+  }
   var++;
   return var;
 }

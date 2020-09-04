@@ -1,10 +1,10 @@
 class Jugador{
-  
+  int t = 2;
   float a = 20;
   float l = 45;
   float grilla[][];
   float salto = 1;
-  float t = 0, lon = sqrt(45), tim = 0, ang;
+  float lon = sqrt(45), tim = 0, ang;
   char input[] = new char[5];
   
   
@@ -32,13 +32,17 @@ class Jugador{
       //Cuando hay una "rampa", el objeto sube
       jpos.y -= 5;
     }
+    for(int i = 0;i < Plataformas.size();i++){
+      plat1 = Plataformas.get(i);
+      
+    }
     //MOVIMIENTO PROVOCADO POR EL USUARIO
     if(cubo.salt == 0 && (vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) || vehit(jpos.x, jpos.y+l+jvel.y, a, l, 3, grilla))){ //Solo cuando el cubo lo acompaña
       if(salto == 0 && vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) && input[0] == 'f'){  //Si está presionada "f" saltamos
         jvel.y = -6.5;
         salto = 1;
-        Salto.amp(0.1);
-        Salto.play(2);
+        /*Salto.amp(0.1);
+        Salto.play(2);*/
       }if(jvel.x < 4.5 && input[1] == 'd'){ //Si está presionada "d" nos movemos a la derecha
         jvel.x += 0.2;
       }if(jvel.x > -4.5 && input[2] == 'a'){ //Si está presionada "a" nos movemos a la izquierda
@@ -48,7 +52,7 @@ class Jugador{
       }
     }
     //LIMITACIONES AL HABER UN CHOQUE DE HITBOX
-    if(vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 1, grilla) && jvel.x != 0){
+    if((vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 1, grilla)||vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 4, grilla)) && jvel.x != 0){
       //Evitar movimiento cerca de paredes
       jvel.x = 0;
     }if(vehit(jpos.x, jpos.y, a, jvel.y, 1, grilla)){ //Chocar contra un "techo"
@@ -57,9 +61,19 @@ class Jugador{
       jvel.y = 0;
       if(input[0] == 0) //Que pueda volver a saltar después de soltar la tecla respectiva
       salto = 0;
-    }else{
+    }
+    else{
       ang = -10*PI/9;
-    }//MODIFICAR LA POSICIÓN SEGÚN LA VELOCIDAD
+    }
+    if(vehit(jpos.x,jpos.y+l+jvel.y,a,0,4,grilla)){
+       
+       jvel.x-=2;
+    }
+    if(vehit(jpos.x,jpos.y+l+jvel.y,a,0,5,grilla)){
+      
+      jvel.x+=2;
+    }
+    //MODIFICAR LA POSICIÓN SEGÚN LA VELOCIDAD
     jpos.x += jvel.x;
     jpos.y += jvel.y;
     
@@ -168,12 +182,12 @@ class Jugador{
     popMatrix();
     //Dinámica de los brazos
     if(input[1] == 'd' && cubo.salt == 0){ 
-      ang = PI/3*sin(t);
-      t += 0.05; //Ángulo aumenta y "lon" es fijado como raiz de 45
+      ang = PI/3*sin(tim/10);
+       //Ángulo aumenta y "lon" es fijado como raiz de 45
       lon = sqrt(45);
     }if(input[2] == 'a' && cubo.salt == 0){
-      ang = PI/3*sin(t);
-      t += 0.05;
+      ang = PI/3*sin(tim/10);
+      
       lon = -sqrt(45); //Lo mismo que antes solo que "lon" tiene signo contrario, esto para que el ojo mire hacia el otro lado
     }if(vehit(jpos.x, jpos.y+l, a, 0, 1, grilla) || input[1] == 0 && input[2] == 0){
       ang = 0;

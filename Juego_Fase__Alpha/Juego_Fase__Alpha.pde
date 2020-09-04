@@ -8,7 +8,7 @@ float[] t = new float[4]; //Variables cambiantes del menú
 float[] u = new float[3]; //Colores aleatorios del menú
 float[][] r = new float[10][2]; //Array de las luces de la función lucesFondo
 PVector jpos,jvel,cvel,jpos2;
-int stage = 0,crear = 1,menu = 0,lmenu = 0, modo = 0;
+int stage = 2,crear = 1,menu = 0,lmenu = 0, modo = 2;
 PFont mono;
 String aviso = " ";
 PImage Modos; //Imagen de guía de controles
@@ -21,14 +21,14 @@ void setup(){
   size(750, 600);
   frameRate(60);
   cubo = new Cubichoque();
-  tetra = new Jugador(width/2, height-100, grilla);
+  tetra = new Jugador(width-50, height-50, grilla);
   mono = createFont("Impact", 32); //Fuente utilizada
-  Salto = new SoundFile(this, "jump.wav"); //Inicializar los audios
+  /*Salto = new SoundFile(this, "jump.wav"); //Inicializar los audios
   Teleport = new SoundFile(this, "teleport.wav");
   Apuntar = new SoundFile(this, "aim.wav");
   Level_1 = new SoundFile(this, "Level_1.mp3");
   MenuSong = new SoundFile(this, "MenuSong.mp3");
-  Modos = loadImage("Modos.png");
+  Modos = loadImage("Modos.png");*/
 }
 
 /*_________________________________________________________________________________________________________________________________________*/
@@ -36,8 +36,8 @@ void setup(){
 void draw(){
   switch(menu){
     case 1:
-      if(!Level_1.isPlaying()){Level_1.play(1); Level_1.amp(0.075);}//La canción suena una y otra vez si nos encontramos en el juego
-      if(MenuSong.isPlaying()){MenuSong.stop();} //Si pasamos al juego, la canción del menú termina
+      /*if(!Level_1.isPlaying()){Level_1.play(1); Level_1.amp(0.075);}//La canción suena una y otra vez si nos encontramos en el juego
+      if(MenuSong.isPlaying()){MenuSong.stop();} *///Si pasamos al juego, la canción del menú termina
       lmenu = menu;
       if(crear == 1){
         stages();
@@ -46,6 +46,7 @@ void draw(){
       noStroke();
       background(0);
       gengrilla(grilla); //Generar la grilla
+      
       t[1] = lucesFondo(t[1]); 
       switch (stage){ //Decoración
         case 0:
@@ -76,7 +77,6 @@ void draw(){
         stages();
         jpos.y = 10;
       }
-      
       for(int i = 0;i < Plataformas.size();i++){
         plat1 = Plataformas.get(i);
         plat1.sprite();
@@ -86,13 +86,14 @@ void draw(){
       cubo.dibujar();
       cubo.disp();
       
+
       break;    
     case 0:
     case -1:
       lmenu = 0;
       background(0);
-      if(!MenuSong.isPlaying()){MenuSong.play(1);MenuSong.amp(0.075);}//La canción suena una y otra vez si nos encontramos en el menú
-      if(Level_1.isPlaying()){Level_1.stop();}
+      /*if(!MenuSong.isPlaying()){MenuSong.play(1);MenuSong.amp(0.075);}//La canción suena una y otra vez si nos encontramos en el menú
+      if(Level_1.isPlaying()){Level_1.stop();}*/
       //else if(modo != 0){MenuSong.stop();}
       t = menu(t[0], t[1], t[2], t[3]); //Función menú
       if((key == 's'||key == 'S') && menu == -1 && modo >= 0){menu = -2;aviso = "saltarte el inicio?";}
@@ -110,7 +111,7 @@ void draw(){
 
 void keyPressed(){
   tetra.movimiento();
-  //if((key == 'r' || key == 'R') && cubo.salt == 2){cubo.salt = 1;}
+  if((key == 'r' || key == 'R') && cubo.salt == 2){cubo.salt = 1;}
   if(key == ENTER && menu == 0){menu = -1;} //Pausa
   if(key == 'c' && menu == 0 && t[3] == 0 && modo == 0){menu = -1; modo = -2;} //Activar créditos
   if((key == ESC)){
@@ -133,8 +134,9 @@ void keyReleased(){
 
 void mousePressed(){
   if(menu == 1)
+  
   switch(cubo.salt){ //Para que cambie el modo 
-    case 0: cubo.salt = 1; Apuntar.amp(0.05);Apuntar.play(2);break; //Pasar a apuntar
+    case 0: cubo.salt = 1; /*Apuntar.amp(0.05);Apuntar.play(2);*/break; //Pasar a apuntar
     case 1: cubo.salt = 2;break; //Pasar a calcular fuerza
     case 2: cubo.salt = 3;break; //En este momento, se el bloque se encuentra viajando
   }
