@@ -25,11 +25,11 @@ class Jugador{
       jvel.x += 0.25; 
     }else if(input[1] == 0 && input[2] == 0){//Cuando la velocidad es pequeña simplemente se detiene
       jvel.x = 0;
-    }if(!vehit(jpos.x, jpos.y+l, a, 0, 1, grilla)){//Gravedad
+    }if(!vehit(jpos.x, jpos.y+l, a, 0, 1, grilla) || !vehit(jpos.x, jpos.y+l, a, 0, 4, grilla) || !vehit(jpos.x, jpos.y+l, a, 0, 5, grilla)){//Gravedad
       jvel.y += 0.3;
     }
     if(vehit(jpos.x+jvel.x, jpos.y+5*l/6, a, l/6, 1, grilla) && !vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 1, grilla)){ 
-      //Cuando hay una "rampa", el objeto sube
+      //Cuando hay un "escalón", el objeto sube
       jpos.y -= 5;
     }
     for(int i = 0;i < Plataformas.size();i++){
@@ -57,7 +57,7 @@ class Jugador{
       jvel.x = 0;
     }if(vehit(jpos.x, jpos.y, a, jvel.y, 1, grilla)){ //Chocar contra un "techo"
       jvel.y = 0;
-    }if(vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla)) { //Chocar contra un "piso"
+    }if(vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) || vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 4, grilla) ||vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 5, grilla)) { //Chocar contra un "piso"
       jvel.y = 0;
       if(input[0] == 0) //Que pueda volver a saltar después de soltar la tecla respectiva
       salto = 0;

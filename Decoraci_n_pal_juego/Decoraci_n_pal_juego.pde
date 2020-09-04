@@ -19,10 +19,6 @@ void setup(){
 void draw(){
   background(0);
   noStroke();
-  fill(-1);
-  triangle(x, y, x, y+l, x+a, y+l);
-  fill(100);
-  triangle(x, y+10, x, y+l, x+a-10, y+l);
   /*
   for(int i = 0; i <= 20; i++){
     fill(255, 200+60*sin(r[i][2]/30));

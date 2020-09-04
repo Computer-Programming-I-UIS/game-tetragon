@@ -138,7 +138,21 @@ float lucesFondo(float t){ //Función que genera unos puntos con posición aleat
       r[i][0] = random(i*width/10, (i+1)*width/10);
       r[i][1] = random(50, height-50);
     }
-    ellipse(r[i][0], r[i][1], 10, 10);
+    pushMatrix();
+    translate(r[i][0], r[i][1]);
+    scale(0.5);
+    beginShape();
+    vertex(0,0);
+    vertex(5, -10);
+    vertex(10, 0);
+    vertex(20, 5);
+    vertex(10, 10);
+    vertex(5, 20);
+    vertex(0, 10);
+    vertex(-10, 5);
+    vertex(0, 0);
+    endShape();
+    popMatrix();
   }
   t++;
   return t;

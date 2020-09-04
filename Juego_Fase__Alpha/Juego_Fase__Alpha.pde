@@ -60,8 +60,8 @@ void draw(){
         t[0] = cristal(30,height/2-10,1,PI/2,t[0]);
         break;
         case 2:
-        t[0] = cristal(width/2-20,height/2-30,0.7,0,t[0]);
-        t[0] = cristal(width/2+30,height-80,1,0,t[0]);
+        t[0] = cristal(width/2-20,height/2-25,0.7,0,t[0]);
+        t[0] = cristal(width/2+130,height-80,1,0,t[0]);
         break;
       }
       
