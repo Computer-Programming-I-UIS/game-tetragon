@@ -52,7 +52,7 @@ Modo Pausa, para darte un descanso o para terminar por hoy, lo puedes abrir en c
 
 ## **Características**: 
 
-99% de los gráficos hechos en Processing:
+100% de los gráficos hechos en Processing:
 
 ![./Media_Readme/Protagonistas.gif](./Media_Readme/Protagonistas.gif)
 
