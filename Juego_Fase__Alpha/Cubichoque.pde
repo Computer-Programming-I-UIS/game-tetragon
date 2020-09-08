@@ -86,7 +86,7 @@ class Cubichoque{
         fza+=yep;
         
         for(int i = 1; i <= width; i++){
-          if(!vehit(rx+i*(fza/5)*cvel.x, ry+i*(fza/5)*cvel.y+0.01*fza/10*pow(i, 2), 1, 1,1,grilla))
+          if(!vehit(rx+i*(fza/5)*cvel.x, ry+i*(fza/5)*cvel.y+0.01*fza/10*pow(i, 2), 1, 1,1,grilla)&& !vehit(rx+i*(fza/5)*cvel.x, ry+i*(fza/5)*cvel.y+0.01*fza/10*pow(i, 2), 1, 1,4,grilla)&&!vehit(rx+i*(fza/5)*cvel.x, ry+i*(fza/5)*cvel.y+0.01*fza/10*pow(i, 2), 1, 1,5,grilla))
           ellipse(rx+i*(fza/5)*cvel.x, ry+i*(fza/5)*cvel.y+0.01*fza/10*pow(i, 2), a/10, l/10);
           else
           break;
@@ -157,7 +157,7 @@ class Cubichoque{
         
         rx+= (fza/5)*cvel.x;
         ry+= (fza/5)*cvel.y;
-        if(vehit(rx+(fza/5)*cvel.x,ry+(fza/5)*cvel.y,20,20,1,grilla) || vehit(rx+(fza/5)*cvel.x,ry+(fza/5)*cvel.y,20,20,4,grilla)){ //Cuando se choca se detiene 
+        if(vehit(rx+(fza/5)*cvel.x,ry+(fza/5)*cvel.y,20,20,1,grilla) || vehit(rx+(fza/5)*cvel.x,ry+(fza/5)*cvel.y,20,20,4,grilla) || vehit(rx+(fza/5)*cvel.x,ry+(fza/5)*cvel.y,20,20,5,grilla)){ //Cuando se choca se detiene 
           cvel.y = 0;
           cvel.x = 0;
           estat = 1;

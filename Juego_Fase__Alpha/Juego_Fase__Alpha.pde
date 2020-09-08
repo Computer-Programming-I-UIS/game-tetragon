@@ -4,11 +4,11 @@ Cubichoque cubo;
 ArrayList<Plataforma> Plataformas = new ArrayList<Plataforma>(); //Arraylist de plataformas a utilzar en cada fase
 float grilla[][] = new float[1250][1250]; //Grilla que representa el hitbox
 float a = 10, l = 10, tim, ang, lon;
-float[] t = new float[4]; //Variables cambiantes del menú
-float[] u = new float[3]; //Colores aleatorios del menú
+float[] t = new float[10]; //Variables cambiantes del menú
+float[] u = new float[10]; //Colores aleatorios del menú
 float[][] r = new float[10][2]; //Array de las luces de la función lucesFondo
 PVector jpos,jvel,cvel,jpos2;
-int stage = 2,crear = 1,menu = 0,lmenu = 0, modo = 2;
+int stage = 3,crear = 1,menu = 0,lmenu = 0, modo = 2;
 PFont mono;
 String aviso = " ";
 PImage Modos; //Imagen de guía de controles
@@ -21,7 +21,7 @@ void setup(){
   size(750, 600);
   frameRate(60);
   cubo = new Cubichoque();
-  tetra = new Jugador(width-55, height-50, grilla);
+  tetra = new Jugador(width/2, 100, grilla);
   mono = createFont("Impact", 32); //Fuente utilizada
   /*Salto = new SoundFile(this, "jump.wav"); //Inicializar los audios
   Teleport = new SoundFile(this, "teleport.wav");
@@ -87,7 +87,6 @@ void draw(){
       cubo.disp();
       
       fill(255);
-      text(frameRate,width/2,height-50);
       break;    
     case 0:
     case -1:
@@ -112,7 +111,7 @@ void draw(){
 
 void keyPressed(){
   tetra.movimiento();
-  if((key == 'r' || key == 'R') && cubo.salt != 0){cubo.salt--;}
+  if((key == 'r' || key == 'R') && (cubo.salt == 1 || cubo.salt == 2)){cubo.salt--;}
   if(key == ENTER && menu == 0){menu = -1;} //Pausa
   if(key == 'c' && menu == 0 && t[3] == 0 && modo == 0){menu = -1; modo = -2;} //Activar créditos
   if((key == ESC)){
@@ -134,11 +133,11 @@ void keyReleased(){
 /*_________________________________________________________________________________________________________________________________________*/
 
 void mousePressed(){
-  if(menu == 1)
-  
+  if(menu == 1){
   switch(cubo.salt){ //Para que cambie el modo 
     case 0: cubo.salt = 1; /*Apuntar.amp(0.05);Apuntar.play(2);*/break; //Pasar a apuntar
     case 1: cubo.salt = 2;break; //Pasar a calcular fuerza
     case 2: cubo.salt = 3;break; //En este momento, se el bloque se encuentra viajando
-  }
+  }  
+}
 }

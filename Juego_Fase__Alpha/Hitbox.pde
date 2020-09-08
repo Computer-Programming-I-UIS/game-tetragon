@@ -17,7 +17,7 @@ void genhitbox(float x,float y,float a,float l,int t, float grilla[][]){ //Cambi
         if(t == 4){
           if(j >= -l/a*i+y+l*(x/a+1)){grilla[i][j] = t;}
         }else if(t == 5){
-          if(j >= i){grilla[i][j] = t;}
+          if(j >= l/a*i+y-l*(x/a)){grilla[i][j] = t;}
         }else{
           grilla[i][j] = t;
         }

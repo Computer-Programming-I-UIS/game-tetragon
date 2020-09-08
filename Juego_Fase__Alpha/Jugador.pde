@@ -52,10 +52,11 @@ class Jugador{
       }
     }
     //LIMITACIONES AL HABER UN CHOQUE DE HITBOX
-    if((vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 1, grilla)||vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 4, grilla)) && jvel.x != 0){
+    if((vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 1, grilla)||vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 4, grilla)||vehit(jpos.x+jvel.x, jpos.y-1, a, 5*l/6, 5, grilla)) && jvel.x != 0){
       //Evitar movimiento cerca de paredes
+      
       jvel.x = 0;
-    }if(vehit(jpos.x, jpos.y, a, jvel.y, 1, grilla)){ //Chocar contra un "techo"
+    }if(vehit(jpos.x, jpos.y+jvel.y, a, 0, 1, grilla)){ //Chocar contra un "techo"
       jvel.y = 0;
     }if(vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 1, grilla) || vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 4, grilla) ||vehit(jpos.x, jpos.y+l+jvel.y, a, 0, 5, grilla)) { //Chocar contra un "piso"
       jvel.y = 0;
@@ -65,11 +66,12 @@ class Jugador{
     else{
       ang = -10*PI/9;
     }
-    if(vehit(jpos.x,jpos.y+l+jvel.y,2*a,0,4,grilla)){ //vehit(jpos.x+a,jpos.y+l+jvel.y,a,0,4,grilla)){
+    if(vehit(jpos.x,jpos.y+l+jvel.y,1.5*a,0,4,grilla)){
        jvel.x-=2;
     }
-    if(vehit(jpos.x,jpos.y+l+jvel.y,2*a,0,5,grilla)){ 
-      jvel.x+=2;
+    if(vehit(jpos.x+jvel.x,jpos.y+jvel.y,a,1.5*l,5,grilla)){ 
+      
+      jvel.x+=2;   
     }
     //MODIFICAR LA POSICIÓN SEGÚN LA VELOCIDAD
     jpos.x += jvel.x;

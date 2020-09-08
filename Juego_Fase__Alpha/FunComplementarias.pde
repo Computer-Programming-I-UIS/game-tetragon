@@ -58,8 +58,26 @@ void stages(){ //Función que determina las plataformas de cada nivel
       crear = 0;
       break;
     case 3:
+      Plataformas.add(new Plataforma(20, height-40,60,40,3,grilla,30,187,215)); //Entrada
+      Plataformas.add(new Plataforma(80, height-30,80,50,1,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma( width/2-60,height-40,50,60,4,grilla,30,187,215)); //Pico mitad
+      Plataformas.add(new Plataforma( width/2,height-40,60,60,5,grilla,30,187,215));
+      Plataformas.add(new Plataforma( width/2-10,height-40,10,60,1,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma(20, height-160,160,20,1,grilla,30,187,215));//Encima de la entrada
+      Plataformas.add(new Plataforma(20,height-200,160,40,5,grilla,30,187,215));
+      
+      Plataformas.add(new Plataforma(width-200,height/2+180,180,20,1,grilla,30,187,215)); //Derecha
+      Plataformas.add(new Plataforma(width-100,height/2+100,80,80,4,grilla,30,187,215));
+      Plataformas.add(new Plataforma(width-100,height/2+200,80,200,1,grilla,30,187,215)); //Pico derecha
+      
+      Plataformas.add(new Plataforma(width/2-25,150,50,30,1,grilla,30,187,215));
+      Plataformas.add(new Plataforma(width/2-25,0,50,150,3,grilla,10,187,215));
       break;
     case 4:
+      Plataformas.add(new Plataforma(width/2-25,height-50,50,50,3,grilla,1,187,215));
+      Plataformas.add(new Plataforma(width/2-75,height-20,50,20,1,grilla,30,187,215));
       break;
     case 5:
       break;

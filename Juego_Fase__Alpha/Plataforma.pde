@@ -15,6 +15,7 @@ class Plataforma{
     a = ancho;
     l = largo;
     t = tipo;
+    var = 1;
     grilla = tempgrilla;
     r = tr; g = tg; b = tb; //Colores
   }
