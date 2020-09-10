@@ -165,8 +165,8 @@ class Cubichoque{
         if(estat == 1){ //Cuando termine el movimiento y confirmadisimo que chocó se teletransporta el jugador
          jpos.x = (dir == 'l' ? rx+tetra.a/2+5:rx-tetra.a/2-5);
          jpos.y = dir == 'u' ? ry+tetra.l/2:ry-tetra.l/2;
-         /*Teleport.amp(0.1);
-         Teleport.play(2);*/
+         Teleport.amp(0.1);
+         Teleport.play(2);
          estat = 0; 
          salt = 0;
         }
