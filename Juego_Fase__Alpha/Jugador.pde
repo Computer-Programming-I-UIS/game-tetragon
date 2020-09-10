@@ -145,7 +145,7 @@ class Jugador{
     translate(20, 120+5*sin(tim/15+1));
     rect(0, 0, 60, 100);
     fill(20, 155, 20);
-    if(cubo.salt != 0 || input[1] == 0 && input[2] == 0){ //El cuerpo del robot según la tecla que presione el jugador
+    if(cubo.salt != 0 || (input[1] == 0 && input[2] == 0)){ //El cuerpo del robot según la tecla que presione el jugador
       rect(10, 10, 20, 10);
       rect(30, 10, 20, 10);
       for(int i = 1; i <= 4; i++){
@@ -187,7 +187,6 @@ class Jugador{
       lon = sqrt(45);
     }if(input[2] == 'a' && cubo.salt == 0){
       ang = PI/3*sin(tim/10);
-      
       lon = -sqrt(45); //Lo mismo que antes solo que "lon" tiene signo contrario, esto para que el ojo mire hacia el otro lado
     }if(vehit(jpos.x, jpos.y+l, a, 0, 1, grilla) || input[1] == 0 && input[2] == 0){
       ang = 0;

@@ -283,7 +283,7 @@ float[] menu (float t, float d, float x, float c){
             fill(255, t);
             textFont(mono);
             textSize(20);
-            text("Manejas a Tetra con las teclas 'A' y 'S'", 3*width/4-100, height/6);
+            text("Manejas a Tetra con las teclas 'A' y 'D'", 3*width/4-100, height/6);
             text("Saltas con 'F''", 3*width/4-100, height/6+25);
             text("Si estás sobre las flechas, puedes subir usando la tecla 'W'", 3*width/4-100, height/3+10);
             image(Modos, 50, height/2+50);
@@ -295,7 +295,8 @@ float[] menu (float t, float d, float x, float c){
             text("esta determina la fuerza", 300, height-75);
             text("Con un 3er click Rubik saldrá volando", width/2+100, height/2+25);
             text("Cuando él choque", width-85, height-100);
-            text("aparecerás en ese lugar", width-85, height-75);
+            text("aparecerás en ese lugar", width-85, height-80);
+            text("Si te equivocas al apuntar, con 'R' puedes rectificar", width/2+140, height-35);
             break;
         }
 

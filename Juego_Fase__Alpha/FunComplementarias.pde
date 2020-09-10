@@ -74,10 +74,12 @@ void stages(){ //Función que determina las plataformas de cada nivel
       
       Plataformas.add(new Plataforma(width/2-25,150,50,30,1,grilla,30,187,215));
       Plataformas.add(new Plataforma(width/2-25,0,50,150,3,grilla,10,187,215));
+      crear = 0;
       break;
     case 4:
       Plataformas.add(new Plataforma(width/2-25,height-50,50,50,3,grilla,1,187,215));
       Plataformas.add(new Plataforma(width/2-75,height-20,50,20,1,grilla,30,187,215));
+      crear = 0;
       break;
     case 5:
       break;

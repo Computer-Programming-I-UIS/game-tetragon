@@ -8,7 +8,7 @@ float[] t = new float[10]; //Variables cambiantes del menú
 float[] u = new float[10]; //Colores aleatorios del menú
 float[][] r = new float[10][2]; //Array de las luces de la función lucesFondo
 PVector jpos,jvel,cvel,jpos2;
-int stage = 0,crear = 1,menu = 0,lmenu = 0, modo = 0;
+int stage = 5,crear = 1,menu = 0,lmenu = 0, modo = 0;
 PFont mono;
 String aviso = " ";
 PImage Modos; //Imagen de guía de controles
@@ -36,21 +36,26 @@ void setup(){
 void draw(){
   switch(menu){
     case 1:
+    println(t[0] +" 1 ");
       if(!Level_1.isPlaying()){Level_1.play(1); Level_1.amp(0.075);}//La canción suena una y otra vez si nos encontramos en el juego
       if(MenuSong.isPlaying()){MenuSong.stop();}//Si pasamos al juego, la canción del menú termina
       lmenu = menu;
       if(crear == 1){
+        println(t[0] +" 2 ");
         stages();
+        println(t[0] +" 3 ");
       }
       rectMode(CORNER);
       noStroke();
       background(0);
       gengrilla(grilla); //Generar la grilla
       
-      t[1] = lucesFondo(t[1]); 
+      t[1] = lucesFondo(t[1]);
+      println(t[0] +" 4 ");
       switch (stage){ //Decoración
         case 0:
         t[0] = cristal(120, 290, 1, 0, t[0]);
+        
         t[0] = cristal(width/2+20, height-49, 0.7, 0, t[0]);
         t[0] = cristal(width-40, 100, 0.5, 3*PI/2, t[0]);
         break;
@@ -63,8 +68,13 @@ void draw(){
         t[0] = cristal(width/2-20,height/2-25,0.7,0,t[0]);
         t[0] = cristal(width/2+130,height-80,1,0,t[0]);
         break;
+        case 3:
+        t[0] = cristal(130,height-58,0.7,0,t[0]);
+        break;
+        case 4:
+        t[0] = cristal(width/2-60,height-48,0.7,0,t[0]);
+        break;
       }
-      
       if(jpos.y < 0){ //Si se sale de la pantalla, cambiará la stage
         crear = 1;
         stage++;
