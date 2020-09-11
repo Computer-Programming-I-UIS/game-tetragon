@@ -64,6 +64,14 @@ Modo Pausa, para darte un descanso o para terminar por hoy, lo puedes abrir en c
 
 ![./Media_Readme/OhNo.gif](./Media_Readme/OhNo.gif)
 
+## **Banner**:
+
+![./Media_Readme/Banner.jpg](./Media_Readme/Banner.jpg)
+
+## **Gif corto**:
+
+![./Media_Readme/Prog.gif](./Media_Readme/Prog.gif)
+
 ## **Créditos**:
 
 - A freeSound.org por su plataforma para descargar fácilmente variedad de sonidos
