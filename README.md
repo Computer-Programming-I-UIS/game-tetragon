@@ -28,6 +28,10 @@ Recomendado para toda la familia/ Para personas de más de 7 años
 
 - Fuente IMPACT instalada en el computador (Opcional)
 
+##### ¿Cómo instalarla?
+
+  Simplemente abres el archivo IMPACT de la carpeta de Juego Fase Alpha, y le das click izquierdo y seleccionas la opción instalar.
+
 ## **Galería**: 
 
 Nuestros Protagonistas, de izquierda a derecha vemos a Rubik y a Tetra:
