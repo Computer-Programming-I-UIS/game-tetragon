@@ -8,7 +8,7 @@ float[] t = new float[10]; //Variables cambiantes del menú
 float[] u = new float[10]; //Colores aleatorios del menú
 float[][] r = new float[10][2]; //Array de las luces de la función lucesFondo
 PVector jpos,jvel,cvel,jpos2;
-int stage = 5,crear = 1,menu = 0,lmenu = 0, modo = 0;
+int stage = 0,crear = 1,menu = 0,lmenu = 0, modo = 0;
 PFont mono;
 String aviso = " ";
 PImage Modos; //Imagen de guía de controles
@@ -41,9 +41,7 @@ void draw(){
       if(MenuSong.isPlaying()){MenuSong.stop();}//Si pasamos al juego, la canción del menú termina
       lmenu = menu;
       if(crear == 1){
-        println(t[0] +" 2 ");
         stages();
-        println(t[0] +" 3 ");
       }
       rectMode(CORNER);
       noStroke();
@@ -51,11 +49,9 @@ void draw(){
       gengrilla(grilla); //Generar la grilla
       
       t[1] = lucesFondo(t[1]);
-      println(t[0] +" 4 ");
       switch (stage){ //Decoración
         case 0:
         t[0] = cristal(120, 290, 1, 0, t[0]);
-        
         t[0] = cristal(width/2+20, height-49, 0.7, 0, t[0]);
         t[0] = cristal(width-40, 100, 0.5, 3*PI/2, t[0]);
         break;

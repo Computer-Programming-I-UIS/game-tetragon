@@ -79,9 +79,30 @@ void stages(){ //Función que determina las plataformas de cada nivel
     case 4:
       Plataformas.add(new Plataforma(width/2-25,height-50,50,50,3,grilla,1,187,215));
       Plataformas.add(new Plataforma(width/2-75,height-20,50,20,1,grilla,30,187,215));
+      Plataformas.add(new Plataforma(width/2-55,height-150,100,50,1,grilla,1,187,215));
+      Plataformas.add(new Plataforma(width/2-55,height-250,50,100,4,grilla,1,187,215));
+      Plataformas.add(new Plataforma(width/2-5,height-250,50,100,5,grilla,1,187,215));
+      Plataformas.add(new Plataforma(20,height-150,50,25,1,grilla,1,187,215));
+      Plataformas.add(new Plataforma(20,height-230,50,25,1,grilla,1,187,215));
+      Plataformas.add(new Plataforma(20,height-255,50,25,5,grilla,1,187,215));
+      Plataformas.add(new Plataforma(width-70,height/2-50,50,25,1,grilla,1,187,215));
+      Plataformas.add(new Plataforma(width-70,height/2-130,50,25,1,grilla,1,187,215));
+      Plataformas.add(new Plataforma(width-70,height/2-155,50,25,4,grilla,1,187,215));
+      Plataformas.add(new Plataforma(20,0,50,75,3,grilla,1,187,215));
       crear = 0;
       break;
     case 5:
+      Plataformas.add(new Plataforma(20,height-50,50,50,3,grilla,15,255,125));
+      Plataformas.add(new Plataforma(70,height-50,40,50,1,grilla,1,187,215));
+      Plataformas.add(new Plataforma(180,height-50,width-200,50,1,grilla,1,187,215));
+      Plataformas.add(new Plataforma(220,height-100,100,50,4,grilla,1,187,215));
+      Plataformas.add(new Plataforma(320,height-100,width-340,50,1,grilla,1,187,215));
+      Plataformas.add(new Plataforma(360,height-150,100,50,4,grilla,1,187,215));
+      Plataformas.add(new Plataforma(460,height-150,width-480,50,1,grilla,1,187,215));
+      Plataformas.add(new Plataforma(500,height-200,100,50,4,grilla,1,187,215));
+      Plataformas.add(new Plataforma(600,height-200,width-620,50,1,grilla,1,187,215));
+      Plataformas.add(new Plataforma(110,height-200,150,50,1,grilla,1,187,215));
+      crear = 0;
       break;
   }
 }
